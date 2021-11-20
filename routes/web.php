@@ -24,3 +24,6 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 
+Route::get('/cadastroProduto', function () {
+    return view('master.productRegistration');
+});
