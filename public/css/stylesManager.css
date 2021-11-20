@@ -37,3 +37,27 @@
 .productRegister button {
     margin:15px 0;
 }
+
+/*Control Painel*/
+
+.fuctionNavegation{
+    background-color: rgba(126, 111, 111, 0.384);
+    padding: 20px 50px;
+    border-radius: 30px ;
+
+}
+
+.cardStyle{
+    text-align: center;
+    border-radius: 10px ;
+    margin: 20px 50px;
+    
+
+}
+
+.cardStyle a{
+    width: 150px;
+    margin-top: 15px;
+    
+ 
+}

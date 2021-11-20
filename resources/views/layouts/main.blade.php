@@ -87,8 +87,8 @@
                 </div>
 
                 <div class="list-group row-sm-1" style="text-align: center; font-size: 12px;">
-                    <a href="#" class="list-group-item list-group-item-action">Acessar Conta</a>
-                    <a href="#" class="list-group-item list-group-item-action">Cadastrar-se</a>
+                    <a href="/login" class="list-group-item list-group-item-action">Acessar Conta</a>
+                    <a href="/register" class="list-group-item list-group-item-action">Cadastrar-se</a>
                 </div>
             </div>
 
