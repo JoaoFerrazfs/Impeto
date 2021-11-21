@@ -34,20 +34,20 @@
 
 
             <nav class="container-fluid nav_button">
-                <button type="button" class="btn btn-outline-light ">
+                <a href="/meusProdutos/{{ auth()->user()->_id}}" type="button" class="btn btn-outline-light ">
                     <ion-icon name="library-outline"></ion-icon>
                     Produtos Cadastrados
-                </button>
+                </a>
 
-                <button type="button" class="btn btn-outline-light ">
+                <a type="button" class="btn btn-outline-light ">
                     <ion-icon name="document-text-outline"></ion-icon>
                     Pedidos
-                </button>
+                </a>
 
-                <button type="button" class="btn btn-outline-light ">
+                <a type="button" class="btn btn-outline-light ">
                     <ion-icon name="notifications-outline"></ion-icon>
                     Notificações
-                </button>
+                </a>
             </nav>
 
             <nav class="container-fluid nav_button">
@@ -57,7 +57,7 @@
                         <img src="https://cdn.icon-icons.com/icons2/1769/PNG/512/4092564-about-mobile-ui-profile-ui-user-website_114033.png" class="img-fluid img-thumbnail" alt="Responsive image">
                     </a>
                 </div>
-                    <a style="color: white;">Plataforma Impeto</a>
+                <a style="color: white;">Plataforma Impeto</a>
                 </div>
 
 
@@ -73,14 +73,14 @@
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                               João Pedro
+                                João Pedro
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                                 <li><a class="dropdown-item" href="#">Meu dados</a></li>
                                 <li><a class="dropdown-item" href="#">Segurança</a></li>
                                 <li><a class="dropdown-item" href="#">Privacidade</a></li>
-                                <li><a class="dropdown-item" href="#">Gerenciar Empresa</a></li>                            
-                               
+                                <li><a class="dropdown-item" href="#">Gerenciar Empresa</a></li>
+
                             </ul>
                         </li>
                     </ul>
