@@ -30,5 +30,8 @@ Route::get('/cadastroProduto', function () {
 });
 
 Route::post('/validaCadastro',[ProductController::class,'store'])->middleware('auth');
+Route::get('/meusProdutos/{id}',[ProductController::class,'myProducts'])->middleware('auth');
+Route::get('/meusProdutos/editarProdutos/{id}',[ProductController::class,'editProducts'])->middleware('auth');
+
 
 

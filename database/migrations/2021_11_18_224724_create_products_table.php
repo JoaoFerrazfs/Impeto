@@ -22,6 +22,8 @@ class CreateProductsTable extends Migration
             $table->string('image');
             $table->string('availability');
             $table->string('order');
+            $table->int('inventory');
+            $table->string('user');
             
             $table->timestamps();
         });
