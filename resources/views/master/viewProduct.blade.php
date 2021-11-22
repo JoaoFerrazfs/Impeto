@@ -46,7 +46,7 @@
         </div>
 
         <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">Estoque</span>
+            <span class="input-group-text" id="basic-addon1">Tipo</span>
             <input type="text" class="form-control" value="{{$product->type}}" name="type" id="type" required="required" >
         </div>
 
