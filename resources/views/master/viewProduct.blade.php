@@ -10,13 +10,13 @@
     <form method="POST" action="/validaCadastro" enctype="multipart/form-data">
         @csrf
 
-        <div class="input-group mb-3">
+        <div class="input-group mb-3 ">
             <span class="input-group-text" id="basic-addon1">Nome do Produto</span>
             <input type="text" name="name" class="form-control" value="{{$product->name}}" id="name" required="required" >
         </div>
 
         <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">Fornecedor</span>
+            <span class="input-group-text " id="basic-addon1">Fornecedor</span>
             <input type="text" class="form-control" value="{{$product->_id_supplier}}" name="_id_supplier" id="_id_supplier" required="required">
         </div>
 
@@ -43,6 +43,11 @@
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Estoque</span>
             <input type="number" class="form-control" value="{{$product->inventory}}" name="inventory" id="inventory" required="required" >
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Estoque</span>
+            <input type="text" class="form-control" value="{{$product->type}}" name="type" id="type" required="required" >
         </div>
 
         <div class="mb-3">

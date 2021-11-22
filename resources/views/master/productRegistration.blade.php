@@ -4,7 +4,7 @@
 
 
 
-<section class="container productRegister">
+<section class="container productRegister ">
     <h1>Cadastro de Produto</h1>
     <form method="POST" action="/validaCadastro" enctype="multipart/form-data">
         @csrf
@@ -16,7 +16,7 @@
 
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Fornecedor</span>
-            <input type="text" class="form-control" name="_id_supplier" id="_id_supplier" required="required">
+            <input type="text" class="form-control " name="_id_supplier" id="_id_supplier" required="required">
         </div>
 
         <div class="input-group mb-3">
@@ -39,10 +39,15 @@
             <textarea class="form-control" id="description" name="description" rows="3"required="required" ></textarea>
         </div>
 
-        <div class="input-group mb-3">
+        <div class="input-group mb-3 ">
             <span class="input-group-text" id="basic-addon1">Estoque</span>
-            <input type="number" class="form-control" name="inventory" id="inventory" required="required" >
+            <input type="number" class="form-control col-md-6 d-flex " name="inventory" id="inventory" required="required" >
         </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Classe de Item</span>
+            <input type="text" class="form-control" name="type" id="type" required="required">
+        </div>
+
 
         <div class="mb-3">
             <label for="image" class="form-label">Adicione uma foto</label>

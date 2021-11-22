@@ -24,6 +24,7 @@ class ProductController extends Controller
         $product->image =  $request->image;
         $product->availability =  $request->availability;
         $product->order =  $request->order;
+        $product->type =  $request->type;
         $product->inventory =  $request->inventory;
 
         $product->user = auth()->user()->_id;      
@@ -70,11 +71,13 @@ class ProductController extends Controller
 
     public function myProducts($user){
         $products = Product::where('user','=',$user)->get();
+        
         return view('master.viewMyProducts', ['products'=>$products]);
     }
 
     public function editProducts($id){
-        $products = Product::where('_id','=',$id)->get();           
+        $products = Product::where('_id','=',$id)->get();
+       
         return view('master.viewProduct', ['products'=>$products]);
     }
 

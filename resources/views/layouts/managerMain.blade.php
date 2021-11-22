@@ -75,11 +75,13 @@
                             <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 João Pedro
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarScrollingDropdown">
                                 <li><a class="dropdown-item" href="#">Meu dados</a></li>
                                 <li><a class="dropdown-item" href="#">Segurança</a></li>
                                 <li><a class="dropdown-item" href="#">Privacidade</a></li>
                                 <li><a class="dropdown-item" href="#">Gerenciar Empresa</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <form method="POST" action="/logout">@csrf<li><button class="dropdown-item" type="submit" >Sair</button></li></form>
 
                             </ul>
                         </li>
