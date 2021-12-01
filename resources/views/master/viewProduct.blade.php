@@ -7,12 +7,13 @@
 @foreach ($products as $product )     
     <div class="col-md-6 container-fluid  productRegister ">
         <h1>Visualização de Produto</h1>
-    <form method="POST" action="/validaCadastro" enctype="multipart/form-data">
+    <form method="POST" action="/meusProdutos/salvaEdicao" enctype="multipart/form-data">
         @csrf
 
         <div class="input-group mb-3 ">
             <span class="input-group-text" id="basic-addon1">Nome do Produto</span>
             <input type="text" name="name" class="form-control" value="{{$product->name}}" id="name" required="required" >
+            <input type="hidden" name="id" class="form-control" value="{{$product->id}}" id="name" required="required" >
         </div>
 
         <div class="input-group mb-3">
@@ -55,7 +56,7 @@
             <input class="form-control" type="file" id="image" name="image">
         </div>
 
-        <button type="Realizar Cadastro" class="btn btn-outline-light">Salvar Produto</button>
+        <button type="Realizar Cadastro" class="btn btn-outline-light">Atualizar produto</button>
     </form>     
     </div>
 

@@ -13,10 +13,10 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
-      
-        
+
+
         $request = $this->data($request);
-        $product =  new Product;       
+        $product =  new Product;
         $product->name =  $request->name;
         $product->_id_supplier =  $request->_id_supplier;
         $product->description =  $request->description;
@@ -27,7 +27,7 @@ class ProductController extends Controller
         $product->type =  $request->type;
         $product->inventory =  $request->inventory;
 
-        $product->user = auth()->user()->_id;      
+        $product->user = auth()->user()->_id;
 
         $product->save();
 
@@ -69,17 +69,50 @@ class ProductController extends Controller
         return $request;
     }
 
-    public function myProducts($user){
-        $products = Product::where('user','=',$user)->get();
-        
-        return view('master.viewMyProducts', ['products'=>$products]);
+    public function myProducts($user)
+    {
+        $products = Product::where('user', '=', $user)->get();
+
+        return view('master.viewMyProducts', ['products' => $products]);
     }
 
-    public function editProducts($id){
-        $products = Product::where('_id','=',$id)->get();
-       
-        return view('master.viewProduct', ['products'=>$products]);
+    public function editProducts($id)
+    {
+        $products = Product::where('_id', '=', $id)->get();
+
+        return view('master.viewProduct', ['products' => $products]);
     }
 
-    
+    public function update(Request $request)
+    {
+        $product = new Product();
+        $request = $this->data($request);
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $requestImage = $request->image;
+
+            $extension = $requestImage->extension();
+
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
+
+            $requestImage->move(public_path('img/products'), $imageName);
+
+            $request->image = $imageName;
+        }
+
+        $data = [
+            "name" => $request->name,
+            "_id_supplier" => $request->_id_supplier,
+            "price" => $request->price,
+            "description" => $request->description,
+            "inventory" => $request->inventory,
+            "type" =>  $request->type,
+            "image" =>  $request->image
+        ];
+
+        Product::find($request->id)->update($data);
+        $product->user = auth()->user()->_id;
+
+        return redirect('/meusProdutos/'.$product->user);
+    }
 }

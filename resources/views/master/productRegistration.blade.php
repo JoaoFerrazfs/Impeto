@@ -55,7 +55,7 @@
         </div>
 
 
-        <button type="Realizar Cadastro" class="btn btn-outline-light">Salvar Produto</button>
+        <button type="submit" class="btn btn-outline-light">Salvar Produto</button>
     </form>
 
 
