@@ -15,8 +15,13 @@
         </div>
 
         <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Código</span>
+            <input type="text" name="cod" class="form-control" id="cod" required="required" >
+        </div>
+
+        <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Fornecedor</span>
-            <input type="text" class="form-control " name="_id_supplier" id="_id_supplier" required="required">
+            <input type="text" class="form-control " name="supplier" id="supplier" required="required">
         </div>
 
         <div class="input-group mb-3">
@@ -25,12 +30,12 @@
         </div>
 
         <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" name="availability" id="availability">
+            <input class="form-check-input" value="null" type="checkbox" role="switch" name="availability" id="availability">
             <label class="form-check-label" for="availability">Disponivel</label>
         </div>
 
         <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" name="order" id="order">
+            <input class="form-check-input" type="checkbox" value="null" role="switch" name="order" id="order">
             <label class="form-check-label" for="order">Somente Encomenda</label>
         </div>
 

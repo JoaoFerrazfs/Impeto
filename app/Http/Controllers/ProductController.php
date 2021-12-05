@@ -7,6 +7,10 @@ use  App\Http\Controllers\Controller;
 use App\Models\Product;
 use Exception;
 use Illuminate\Contracts\Session\Session;
+use App\Http\Controllers\MovementHistoryController;
+use App\Models\MovementHistory;
+use App\Http\Controllers;
+
 
 class ProductController extends Controller
 {
@@ -18,7 +22,8 @@ class ProductController extends Controller
         $request = $this->data($request);
         $product =  new Product;
         $product->name =  $request->name;
-        $product->_id_supplier =  $request->_id_supplier;
+        $product->cod =  $request->cod;
+        $product->supplier =  $request->supplier;
         $product->description =  $request->description;
         $product->price =  $request->price;
         $product->image =  $request->image;
@@ -38,19 +43,20 @@ class ProductController extends Controller
     public function data($request)
     {
         /*data type validation*/
-        $request->price = floatval($request->price);
-        $request->inventory = intval($request->price);
 
-        if ($request->availability == null) {
-            $request->availability = "Indisponivel";
+        $request["price"] = floatval($request["price"]);
+        $request["inventory"] = intval($request["inventory"]);
+
+        if ($request["availability"] == null) {
+            $request["availability"] = "Indisponivel";
         } else {
-            $request->availability = "Disponível";
+            $request["availability"] = "Disponível";
         }
 
-        if ($request->order == null) {
-            $request->order = "Pronta Entrega";
+        if ($request["order"] != "null") {
+            $request["order"] = "Pronta Entrega";
         } else {
-            $request->order = "Encomenda";
+            $request["order"] = "Encomenda";
         }
 
         /*image validation*/
@@ -85,8 +91,20 @@ class ProductController extends Controller
 
     public function update(Request $request)
     {
+
         $product = new Product();
-        $request = $this->data($request);
+
+
+
+        $history = new MovementHistoryController();
+
+        $dataHistory = Product::find($request["id"]);
+
+
+
+        $requestHandled = $this->data($request);
+
+    
 
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $requestImage = $request->image;
@@ -100,19 +118,96 @@ class ProductController extends Controller
             $request->image = $imageName;
         }
 
-        $data = [
-            "name" => $request->name,
-            "_id_supplier" => $request->_id_supplier,
-            "price" => $request->price,
-            "description" => $request->description,
-            "inventory" => $request->inventory,
-            "type" =>  $request->type,
-            "image" =>  $request->image
-        ];
+        if ($request->image == null) {
+            $request->image = $dataHistory->image;
+        }
 
-        Product::find($request->id)->update($data);
-        $product->user = auth()->user()->_id;
+        if ($request->price != $dataHistory->price || $request->inventory != $dataHistory->inventory) {
+            $history->productHistory($dataHistory);
 
-        return redirect('/meusProdutos/'.$product->user);
+            $data = [
+                "cod" => $requestHandled['cod'],
+                "name" => $requestHandled['name'],
+                "supplier" => $requestHandled['supplier'],
+                "price" => $requestHandled['price'],
+                "description" => $requestHandled['description'],
+                "inventory" => $requestHandled['inventory'],
+                "availability" => $requestHandled['availability'],
+                "image" =>   $request->image
+            ];
+
+            
+            
+           
+        } else {
+
+            $data = [
+                "cod" => $requestHandled['cod'],
+                "name" => $requestHandled['name'],
+                "supplier" => $requestHandled['supplier'],
+                "price" => $requestHandled['price'],
+                "description" => $requestHandled['description'],
+                "inventory" => $requestHandled['inventory'],
+                "availability" => $requestHandled['availability'],
+                "image" =>   $request->image
+            ];
+            
+
+
+            
+           
+        }
+      
+        $user = auth()->user()->_id;
+        Product::find($request['id'])->update($data);
+
+        return redirect('/meusProdutos/' . $user);
+    }
+
+    public function changeState(Request $request)
+    {
+        $product = new Product();
+
+        $requestArray = $request->all();
+
+        $data = Product::find($request['id']);
+
+
+
+
+        if (array_key_exists("order", $requestArray)) {
+
+            if ($data["order"] == "Pronta Entrega") {
+                $data = ["order" => "Encomenda"];
+
+                Product::find($request['id'])->update($data);
+            } else {
+                $data = ["order" => "Pronta Entrega"];
+                Product::find($request['id'])->update($data);
+            }
+        } else {
+
+            if ($data["availability"] == "Disponível") {
+                $data = ["availability" => "Indisponivel"];
+                Product::find($request['id'])->update($data);
+            } else {
+                $data = ["availability" => "Disponível"];
+                Product::find($request['id'])->update($data);
+            }
+        }
+
+
+        return redirect('/meusProdutos/editarProdutos/' . $requestArray["id"]);
+    }
+
+    public function destroy($id)
+    {
+        $product = new Product();
+
+
+
+        Product::where('_id', $id)->delete();
+        $user = auth()->user()->_id;
+        return redirect('/meusProdutos/' . $user);
     }
 }
