@@ -65,9 +65,8 @@
               <input type="hidden" name="id" value= "{{$product->_id}}">
               
               <button type="submit" class="btn btn-primary">Visualizar Produto</button><br></br>
-            </form>
+            </form>      
             
-            <button href="#" class="btn btn-primary">Adionar ao Carrinho</button>
         </div>
     </div>
     

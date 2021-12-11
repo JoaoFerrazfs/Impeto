@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PurchaseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,4 +35,6 @@ Route::post('/meusProdutos/salvaEdicao',[ProductController::class,'update'])->mi
 Route::post('/meusProdutos/status',[ProductController::class,'changeState'])->middleware('auth');
 Route::delete('/meusProdutos/delete/{id}',[ProductController::class,'destroy'])->middleware('auth');
 Route::get('/',[ProductController::class,'index']);
-Route::post('/visualizarProduto',[ProductController::class,'viewProduct']);  
+Route::post('/visualizarProduto',[ProductController::class,'viewProduct']);
+Route::post('/carrinho',[PurchaseController::class,'makeShoppingList']);    
+Route::get('/carrinho/visualizar',[PurchaseController::class,'showShoppingList']);

@@ -45,9 +45,15 @@
 
 
 
-                <form method="POST" action="/meusProdutos/salvaEdicao" enctype="multipart/form-data">
+                <form method="POST" action="/carrinho" enctype="multipart/form-data">
                     @csrf
-                    <button type="submit" class="btn btn-outline-light">Atualizar produto</button>
+                    <input type="hidden" name="id" class="form-control" id="id"  value="{{$products->_id}}">
+                    <input type="hidden" name="cod" class="form-control" id="cod"  value="{{$products->cod}}">
+                    <input type="hidden" name="name" class="form-control" id="name"  value="{{$products->name}}"> 
+                    <input type="hidden" name="price" class="form-control" id="price"  value="{{$products->price}}"> 
+                    <input type="hidden" name="image" class="form-control" id="image"  value="{{$products->image}}"> 
+
+                    <button type="submit" class="btn btn-outline-light">Adicionar ao Carrinho</button>
                 </form>
         </div>
 

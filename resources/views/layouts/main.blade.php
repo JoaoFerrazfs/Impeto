@@ -72,7 +72,7 @@
                 </ul>
 
             </div>
-
+            @auth
             <div class="container-fluid col-sm-1">
                 <button type="button" class="btn btn-light btn-lg" style="margin-left:50px; text-align: center;font-size: 20px;">Carrinho
                     <img src="https://cdn-icons-png.flaticon.com/512/126/126510.png" style="width: 40px;" class="rounded float-end" alt="...">
@@ -80,6 +80,7 @@
 
 
             </div>
+            @endauth
 
             <div class="container-fluid col-sm-1">
                 <div>
