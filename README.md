@@ -24,9 +24,11 @@ O sistema permitirá o controle de fornecedor, clientes, produtos, vendas  e gar
 
 ## :white_check_mark: Tecnologias Utilizadas
 - `PHP 8`
+- `Laravel 8`
 - `MongoDB`
 - `Visual Studio Code`
 - `Astah UML` 
+
 
 ## Autores
 
