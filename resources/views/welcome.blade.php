@@ -50,59 +50,29 @@
 
 <nav class="card-container" style="margin:50px 280px ; display : flex;">
 
+@foreach ($products as $product)
+ 
     <div class="card col-md-12" style="width: 18rem; margin:50px 20px ">
-        <img src="https://png.pngtree.com/png-vector/20190120/ourlarge/pngtree-gallery-vector-icon-png-image_470660.jpg" class="card-img-top" alt="...">
+        <img src="/img/products/{{$product->image}}" class="card-img-top" alt="...">
         <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+           
+            <h5 class="card-title">{{$product->name}}</h5>
+            <p class="card-text">{{$product->description}}</p>
+            <p class="card-text">Preço:  {{$product->price}}</p>
+            <p class="card-text">Preço:  {{$product->price}}</p>
+            <form method="post" action="/visualizarProduto/">
+              @csrf
+              <input type="hidden" name="id" value= "{{$product->_id}}">
+              
+              <button type="submit" class="btn btn-primary">Visualizar Produto</button><br></br>
+            </form>
+            
+            <button href="#" class="btn btn-primary">Adionar ao Carrinho</button>
         </div>
     </div>
+    
+@endforeach
 
-    <div class="card col-md-12" style="width: 18rem;margin:50px 20px">
-        <img src="https://png.pngtree.com/png-vector/20190120/ourlarge/pngtree-gallery-vector-icon-png-image_470660.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-    </div>
-
-    <div class="card col-md-12" style="width: 18rem;margin:50px 20px">
-        <img src="https://png.pngtree.com/png-vector/20190120/ourlarge/pngtree-gallery-vector-icon-png-image_470660.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-    </div>
-
-    <div class="card col-md-12" style="width: 18rem;margin:50px 20px">
-        <img src="https://png.pngtree.com/png-vector/20190120/ourlarge/pngtree-gallery-vector-icon-png-image_470660.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-    </div>
-
-    <div class="card col-md-12" style="width: 18rem;margin:50px 20px">
-        <img src="https://png.pngtree.com/png-vector/20190120/ourlarge/pngtree-gallery-vector-icon-png-image_470660.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-    </div>
-
-    <div class="card col-md-12" style="width: 18rem;margin:50px 20px">
-        <img src="https://png.pngtree.com/png-vector/20190120/ourlarge/pngtree-gallery-vector-icon-png-image_470660.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-    </div>
 
 
 

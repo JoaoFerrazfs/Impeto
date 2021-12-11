@@ -18,12 +18,12 @@
 
             <div class="input-group mb-3 ">
                 <span class="input-group-text" id="basic-addon1">Código</span>
-                <input type="text" name="cod" class="form-control" value="{{$product->cod}}" id="cod" required="required">
+                <input type="text" name="cod" class="form-control" value="{{$product->cod}}" id="cod" required="required" readonly>
             </div>
 
             <div class="input-group mb-3">
                 <span class="input-group-text " id="basic-addon1">Fornecedor</span>
-                <input type="text" class="form-control" value="{{$product->supplier}}" name="supplier" id="supplier" required="required">
+                <input type="text" class="form-control" value="{{$product->supplier}}" name="supplier" id="supplier" required="required"  >
             </div>
 
             <div class="input-group mb-3">

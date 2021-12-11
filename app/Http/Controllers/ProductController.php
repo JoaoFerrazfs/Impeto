@@ -104,7 +104,7 @@ class ProductController extends Controller
 
         $requestHandled = $this->data($request);
 
-    
+
 
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $requestImage = $request->image;
@@ -133,12 +133,9 @@ class ProductController extends Controller
                 "description" => $requestHandled['description'],
                 "inventory" => $requestHandled['inventory'],
                 "availability" => $requestHandled['availability'],
+                "type" => $requestHandled['type'],
                 "image" =>   $request->image
             ];
-
-            
-            
-           
         } else {
 
             $data = [
@@ -149,15 +146,11 @@ class ProductController extends Controller
                 "description" => $requestHandled['description'],
                 "inventory" => $requestHandled['inventory'],
                 "availability" => $requestHandled['availability'],
+                "type" => $requestHandled['type'],
                 "image" =>   $request->image
             ];
-            
-
-
-            
-           
         }
-      
+
         $user = auth()->user()->_id;
         Product::find($request['id'])->update($data);
 
@@ -210,4 +203,32 @@ class ProductController extends Controller
         $user = auth()->user()->_id;
         return redirect('/meusProdutos/' . $user);
     }
+
+    public function index(){
+        $product = new Product(); 
+        $products = Product::where('availability', 'Disponível')->get();      
+        return view('welcome', ['products' => $products]);
+    }
+    public function viewProduct(Request $request){      
+
+        $product = new Product();         
+        $request = $request->all();       
+        $products = Product::find($request["id"]);
+
+        if($products->availability != "Disponível"){
+            return redirect('/');
+        }else{
+            return view('client.viewProductClient', ['products' => $products]);
+        }
+
+        
+        
+       
+       
+
+     
+
+    }
+
+   
 }

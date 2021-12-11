@@ -14,9 +14,7 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -35,4 +33,5 @@ Route::get('/meusProdutos/editarProdutos/{id}',[ProductController::class,'editPr
 Route::post('/meusProdutos/salvaEdicao',[ProductController::class,'update'])->middleware('auth');
 Route::post('/meusProdutos/status',[ProductController::class,'changeState'])->middleware('auth');
 Route::delete('/meusProdutos/delete/{id}',[ProductController::class,'destroy'])->middleware('auth');
-
+Route::get('/',[ProductController::class,'index']);
+Route::post('/visualizarProduto',[ProductController::class,'viewProduct']);  

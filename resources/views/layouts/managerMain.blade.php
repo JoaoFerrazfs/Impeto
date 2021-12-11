@@ -32,7 +32,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-
+            @auth
             <nav class="container-fluid nav_button">
                 <a href="/meusProdutos/{{ auth()->user()->_id}}" type="button" class="btn btn-outline-light ">
                     <ion-icon name="library-outline"></ion-icon>
@@ -49,7 +49,7 @@
                     Notificações
                 </a>
             </nav>
-
+           
             <nav class="container-fluid nav_button">
 
                 <div class="container" style="margin-left:5px;">
@@ -95,7 +95,7 @@
                 </div>
 
             </nav>
-
+            @endauth
         </nav>
     </header>
 

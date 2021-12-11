@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 
 class MovementHistoryController extends Controller
 {
-    public function productHistory($data){
+    public function productHistory($data)
+    {
 
         $history= new MovementHistory();
      
