@@ -51,7 +51,8 @@
                     <input type="hidden" name="cod" class="form-control" id="cod"  value="{{$products->cod}}">
                     <input type="hidden" name="name" class="form-control" id="name"  value="{{$products->name}}"> 
                     <input type="hidden" name="price" class="form-control" id="price"  value="{{$products->price}}"> 
-                    <input type="hidden" name="image" class="form-control" id="image"  value="{{$products->image}}"> 
+                    <input type="hidden" name="image" class="form-control" id="image"  value="{{$products->image}}">
+                    <input type="hidden" name="inventory" class="form-control" id="inventory"  value="{{$products->inventory}}"> 
 
                     <button type="submit" class="btn btn-outline-light">Adicionar ao Carrinho</button>
                 </form>
