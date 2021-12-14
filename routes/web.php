@@ -40,4 +40,5 @@ Route::post('/carrinho',[PurchaseController::class,'makeShoppingList']);
 Route::get('/carrinho/visualizar',[PurchaseController::class,'showShoppingList']);
 Route::post('/carrinho/excluir/item',[PurchaseController::class,'deleteItemShoppingList']);
 Route::post('/carrinho/excluir/carrinho',[PurchaseController::class,'deleteCart']);
-Route::post('/pedido',[PurchaseController::class,'budget']); 
+Route::get('/pedido',[PurchaseController::class,'budget'])->middleware('auth');
+Route::post('/carrinho/modifica/quantidade',[PurchaseController::class,'updateQuantity']); 

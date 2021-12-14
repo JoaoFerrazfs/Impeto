@@ -10,52 +10,75 @@
         </form>
     </th>
 
-    <form method="POST" action="/pedido" enctype="multipart/form-data">
-        @csrf
-        <table class=" table table-hover table-dark table-borderless ">
-            <thead>
-                <tr>
-                    <th scope="col">Quantidade</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Preço</th>
-                    <th scope="col">Disponibilidade</th>
-                    <th scope="col">Foto</th>
-                    <th></th>
+
+    <table class=" table table-hover table-dark table-borderless ">
+        <thead>
+            <tr>
+                <th scope="col">Quantidade</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Preço</th>
+                <th scope="col">Disponibilidade</th>
+                <th scope="col">Foto</th>
+                <th scope="col">Valor Total: R${{$amount}}</th>
 
 
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($cart as $key=> $cart)
-                <tr>
-                    <td><input type="number" name="amount" min="1" max="{{$cart['inventory']}}" ></td>
-                    <td>{{$cart['cod']}}</td>
-                    <td>{{$cart['name']}}</td>
-                    <td>{{$cart['price']}}</td>
-                    <td><img src="/img/products/{{$cart['image']}}" class="img-fluid " alt="$cart['image']"></td>
-                    </td>
+            </tr>
+        </thead>
 
+        <tbody>
+
+
+            @foreach ($cart as $key=> $carts)
+            <tr>
+                <form method="POST" action="/carrinho/modifica/quantidade" enctype="multipart/form-data">
+                    @csrf
                     <td>
-                        <form method="POST" action="/carrinho/excluir/item" enctype="multipart/form-data">
-                            @csrf
-                            <input type="hidden" name="key" value="{{$key}}">
-                            <input type="hidden" name="cod" value="{{$cart['cod']}}">
+                        <input type="number" name="amount" min="1" max="{{$carts['inventory']}}" value="{{$carts['quantity']}}">
+                        <input type="hidden" name="key" value="{{$key}}">
 
-                            <button type="submit" class="btn btn-outline-light">Excluir item</button>
-                        </form>
                     </td>
+                </form>
+                <td>{{$carts['cod']}}</td>
+                <td>{{$carts['name']}}</td>
+                <td>{{$carts['price']}}</td>
+                <td><img src="/img/products/{{$carts['image']}}" style="width: 100px;" class="img-fluid " alt="$carts['image']"></td>
+                </td>
 
 
-                </tr>
 
-                @endforeach
-            </tbody>
-        </table>
 
-        <a href="/" class="btn btn-outline-light">Continuar Comprando</a>
-        <button type="submit" class="btn btn-outline-light">Fechar Pedido</button>
+                <td>
+                    <form method="POST" action="/carrinho/excluir/item" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="key" value="{{$key}}">
+                        <input type="hidden" name="cod" value="{{$carts['cod']}}">
 
-    </form>
+                        <button type="submit" class="btn btn-outline-light">Excluir item</button>
+                    </form>
+                </td>
+
+        </tbody>
+
+
+
+
+
+
+        @endforeach
+
+    </table>
+
+    <a href="/" class="btn btn-outline-light">Continuar Comprando</a>
+
+
+
+    <div class="text-center alert alert-light " style="margin-top: 50px; border-radius: 60px;">
+        <h2 style="color: black;">Para efetuar o pedido você deve fazer acessar sua conta</h2>
+        <a href="/pedido" class="btn btn-outline-dark">Fechar Pedido</a>
+    </div>
+
+
+
 
 </div>
 
