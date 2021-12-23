@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\PurchaseController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -36,9 +37,10 @@ Route::post('/meusProdutos/status',[ProductController::class,'changeState'])->mi
 Route::delete('/meusProdutos/delete/{id}',[ProductController::class,'destroy'])->middleware('auth');
 Route::get('/',[ProductController::class,'index']);
 Route::post('/visualizarProduto',[ProductController::class,'viewProduct']);
-Route::post('/carrinho',[PurchaseController::class,'makeShoppingList']);    
-Route::get('/carrinho/visualizar',[PurchaseController::class,'showShoppingList']);
-Route::post('/carrinho/excluir/item',[PurchaseController::class,'deleteItemShoppingList']);
-Route::post('/carrinho/excluir/carrinho',[PurchaseController::class,'deleteCart']);
-Route::get('/pedido',[PurchaseController::class,'budget'])->middleware('auth');
-Route::post('/carrinho/modifica/quantidade',[PurchaseController::class,'updateQuantity']); 
+Route::post('/carrinho',[BudgetController::class,'makeShoppingList']);    
+Route::get('/carrinho/visualizar',[BudgetController::class,'showShoppingList']);
+Route::post('/carrinho/excluir/item',[BudgetController::class,'deleteItemShoppingList']);
+Route::post('/carrinho/excluir/carrinho',[BudgetController::class,'deleteCart']);
+Route::get('/pedido',[BudgetController::class,'newBudget'])->middleware('auth');
+Route::post('/carrinho/modifica/quantidade',[BudgetController::class,'updateQuantity']);
+Route::post('/pedido/confirmado',[BudgetController::class,'saveBudget']) ->middleware('auth'); 
