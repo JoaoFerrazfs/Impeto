@@ -118,8 +118,6 @@ class BudgetController extends Controller
         $budgetNumber = Budget::all()->count() + 1;
         $idCliente = auth()->user()->id;
         $cart = $request->session()->get('cart');
-        $supplier = [];
-        $teste = [];
 
         $delivery = [
             "name" => $request->name,
@@ -129,21 +127,10 @@ class BudgetController extends Controller
             "number" => $request->number,
         ];
 
-      
 
-        foreach ($cart as $key => $value) {
-            $supplier[$key] = $value['supplier'];
-        }
-
-
-        foreach ($supplier as $key =>  $value) {
-                array_push($teste,$cart[$key]);
-        };
-
-        $budget->delivery=$delivery; 
-        $budget->products=$teste ;
-       
-
+        $budget->delivery = $idCliente;
+        $budget->delivery = $delivery;
+        $budget->products = $cart;
         $budget->save();
         session()->forget('cart');
 
