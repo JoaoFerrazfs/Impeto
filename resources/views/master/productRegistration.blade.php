@@ -56,7 +56,7 @@
 
         <div class="mb-3">
             <label for="image" class="form-label">Adicione uma foto</label>
-            <input class="form-control" type="file" id="image" name="image">
+            <input class="form-control" type="file" id="image" name="image" required="required">
         </div>
 
 

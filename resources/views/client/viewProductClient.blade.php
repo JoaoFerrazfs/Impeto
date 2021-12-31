@@ -53,7 +53,8 @@
                     <input type="hidden" name="price" class="form-control" id="price"  value="{{$products->price}}"> 
                     <input type="hidden" name="image" class="form-control" id="image"  value="{{$products->image}}">
                     <input type="hidden" name="inventory" class="form-control" id="inventory"  value="{{$products->inventory}}"> 
-
+                    <input type="hidden" name="supplier" class="form-control" id="supplier"  value="{{$products->supplier}}">
+                    <input type="hidden" name="userSupplier" class="form-control" id="userSupplier"  value="{{$products->user}}">
                     <button type="submit" class="btn btn-outline-light">Adicionar ao Carrinho</button>
                 </form>
         </div>

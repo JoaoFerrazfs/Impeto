@@ -24,78 +24,74 @@
 
 
 
-<body class="container-fluid" style="background-color:black;">
-    <header class="container-fluid">
-        <nav class=" container-fluid navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="/dashboard">Impeto Plataforma</a>
+<body class="container-fluid " style="background-color:black;">
+    <header class=" position-relative navbar navbar-expand-lg navbar-dark bg-dark  d-flex p-2">
+        <div class="  d-flex  ">
+            <a class="navbar-brand" href="/">Impeto Plataforma</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             @auth
-            <nav class="container-fluid nav_button">
-                <a href="/meusProdutos/{{ auth()->user()->_id}}" type="button" class="btn btn-outline-light ">
-                    <ion-icon name="library-outline"></ion-icon>
-                    Produtos Cadastrados
-                </a>
+            <a type="button" class="btn btn-outline-light ">
+                <ion-icon name="notifications-outline"></ion-icon>
+                Notificações
+            </a>
+        </div>
 
-                <a type="button" class="btn btn-outline-light ">
-                    <ion-icon name="document-text-outline"></ion-icon>
-                    Pedidos
-                </a>
+        <nav class=" mt-2 d-flex position-absolute top-0 end-0 ">
 
-                <a type="button" class="btn btn-outline-light ">
-                    <ion-icon name="notifications-outline"></ion-icon>
-                    Notificações
-                </a>
-            </nav>
-           
-            <nav class="container-fluid nav_button">
-
-                <div class="container" style="margin-left:5px;">
-                    <a type="button" class="btn btn-outline-light ">
-                        <img src="https://cdn.icon-icons.com/icons2/1769/PNG/512/4092564-about-mobile-ui-profile-ui-user-website_114033.png" class="img-fluid img-thumbnail" alt="Responsive image">
+            <div class="d-flex">
+                <div class=" mb-3 mx-3">
+                    <a type="button" class=" ">
+                        <img src="https://cdn.icon-icons.com/icons2/1769/PNG/512/4092564-about-mobile-ui-profile-ui-user-website_114033.png" style="max-width: 40px;" class="img-thumbnail" alt="Responsive image">
                     </a>
-                </div>
-                <a style="color: white;">Plataforma Impeto</a>
-                </div>
-
-
-
-                <div class="container" style="margin-left: 180px;">
-                    <a type="button" class="btn btn-outline-light ">
-                        <img src="https://cdn.icon-icons.com/icons2/1769/PNG/512/4092564-about-mobile-ui-profile-ui-user-website_114033.png" class="img-fluid img-thumbnail" alt="Responsive image">
-                    </a>
+                    <a style="color: white;">Plataforma Impeto</a>
                 </div>
 
-                <div>
-                    <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                João Pedro
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarScrollingDropdown">
-                                <li><a class="dropdown-item" href="#">Meu dados</a></li>
-                                <li><a class="dropdown-item" href="#">Segurança</a></li>
-                                <li><a class="dropdown-item" href="#">Privacidade</a></li>
-                                <li><a class="dropdown-item" href="#">Gerenciar Empresa</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <form method="POST" action="/logout">@csrf<li><button class="dropdown-item" type="submit" >Sair</button></li></form>
-
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+            </div>
 
 
-                <div>
+
+            <div class="mb-3 mx-3">
+                <a type="button" class="">
+                    <img src="https://cdn.icon-icons.com/icons2/1769/PNG/512/4092564-about-mobile-ui-profile-ui-user-website_114033.png" style="max-width: 40px;" class=" img-thumbnail" alt="Responsive image">
+                </a>
+            </div>
+
+            </div>
 
 
-                </div>
+            <div>
+                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
 
-            </nav>
-            @endauth
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            João Pedro
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarScrollingDropdown">
+                            <li><a class="dropdown-item" href="#">Meu dados</a></li>
+                            <li><a class="dropdown-item" href="#">Segurança</a></li>
+                            <li><a class="dropdown-item" href="#">Privacidade</a></li>
+                            <li><a class="dropdown-item" href="#">Gerenciar Empresa</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <form method="POST" action="/logout">@csrf<li><button class="dropdown-item" type="submit">Sair</button></li>
+                            </form>
+
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+
+            <div>
+
+
+            </div>
+
+        </nav>
+        @endauth
         </nav>
     </header>
 

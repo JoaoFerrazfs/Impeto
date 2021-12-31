@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BudgetController;
+use App\Http\Controllers\OrderManagerController;
 use App\Http\Controllers\ProductController;
 
 
@@ -43,4 +44,5 @@ Route::post('/carrinho/excluir/item',[BudgetController::class,'deleteItemShoppin
 Route::post('/carrinho/excluir/carrinho',[BudgetController::class,'deleteCart']);
 Route::get('/pedido',[BudgetController::class,'newBudget'])->middleware('auth');
 Route::post('/carrinho/modifica/quantidade',[BudgetController::class,'updateQuantity']);
-Route::post('/pedido/confirmado',[BudgetController::class,'saveBudget']) ->middleware('auth'); 
+Route::post('/pedido/confirmado',[BudgetController::class,'saveBudget']) ->middleware('auth');
+Route::get('/pedidos/{id}',[OrderManagerController::class,'manager'])->middleware('auth');

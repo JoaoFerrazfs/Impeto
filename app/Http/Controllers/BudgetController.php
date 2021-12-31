@@ -14,14 +14,17 @@ class BudgetController extends Controller
     {
 
         $cart = $request->session()->get('cart');
-        $cartAdd=[];
+        $cartAdd = [];
         $cartAdd['id'] = $request->id;
         $cartAdd['cod'] = $request->cod;
         $cartAdd['name'] = $request->name;
         $cartAdd['price'] = $request->price;
+        $cartAdd['supplier'] = $request->supplier;
+        $cartAdd['userSupplier'] = $request->userSupplier;
         $cartAdd['image']  = $request->image;
         $cartAdd['inventory'] = $request->inventory;
         $cartAdd['quantity'] = 1;
+        $cartAdd['status'] = "Novo";
 
         $request->session()->push('cart', $cartAdd);
 
@@ -83,7 +86,7 @@ class BudgetController extends Controller
             "id" => auth()->user()->id,
             "name" => auth()->user()->name
         ];
-        
+
         $cart = $request->session()->get('cart');
         $quantity = 0;
         $amount = 0;
@@ -99,7 +102,7 @@ class BudgetController extends Controller
         ];
 
 
-       
+
 
         return view('client.viewBudget', [
             'amount' => $amount,
@@ -108,27 +111,42 @@ class BudgetController extends Controller
         ]);
     }
 
-    public function saveBudget (Request $request){
+    public function saveBudget(Request $request)
+    {
         $budget = new Budget();
 
-        $data = [
-            "name"=> $request->name,
-            "phoneNumber"=> $request->phoneNumber,
-            "CEP"=> $request->CEP,
-            "street"=> $request->street,
-            "number"=> $request->number,
-        ];
-
+        $budgetNumber = Budget::all()->count() + 1;
+        $idCliente = auth()->user()->id;
         $cart = $request->session()->get('cart');
+        $supplier = [];
+        $teste = [];
 
-        $dataBudget=[
-            "delivery" =>$data,
-            "products" =>$cart
+        $delivery = [
+            "name" => $request->name,
+            "phoneNumber" => $request->phoneNumber,
+            "CEP" => $request->CEP,
+            "street" => $request->street,
+            "number" => $request->number,
         ];
+
+      
+
+        foreach ($cart as $key => $value) {
+            $supplier[$key] = $value['supplier'];
+        }
+
+
+        foreach ($supplier as $key =>  $value) {
+                array_push($teste,$cart[$key]);
+        };
+
+        $budget->delivery=$delivery; 
+        $budget->products=$teste ;
        
-        $budget->idCliente = auth()->user()->id;
-        $budget->dataBuget = $dataBudget;
-       $budget->save();
-       
+
+        $budget->save();
+        session()->forget('cart');
+
+        return redirect("/")->with('success', 'Pedido ' . $budgetNumber . ' realizado. Consulte sua lista de pedidos.');
     }
 }
