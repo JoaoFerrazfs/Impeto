@@ -9,4 +9,5 @@ class Budget extends Model
 {
     use HasFactory;
     protected $guarded = [];
+   
 }

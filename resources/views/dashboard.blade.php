@@ -37,7 +37,7 @@
     <div class="card cardStyle" style="width: 18rem;">
         <div class="card-body">
             <h5 class="card-title">Lista de Pedidos</h5>
-            <a href="/pedidos/{{ auth()->user()->_id}}" type="submit" class="btn btn-primary btn-lg">
+            <a href="/pedidos/{{ auth()->user()->supplier}}" type="submit" class="btn btn-primary btn-lg">
                 <ion-icon name="library-outline"></ion-icon>
             </a>
         </div>

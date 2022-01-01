@@ -46,3 +46,4 @@ Route::get('/pedido',[BudgetController::class,'newBudget'])->middleware('auth');
 Route::post('/carrinho/modifica/quantidade',[BudgetController::class,'updateQuantity']);
 Route::post('/pedido/confirmado',[BudgetController::class,'saveBudget']) ->middleware('auth');
 Route::get('/pedidos/{id}',[OrderManagerController::class,'manager'])->middleware('auth');
+Route::post('/pedidos/visualizar',[OrderManagerController::class,'showOrder']);

@@ -126,9 +126,9 @@ class BudgetController extends Controller
             "street" => $request->street,
             "number" => $request->number,
         ];
-
-
-        $budget->delivery = $idCliente;
+        $budget->idClient = $idCliente;
+        $budget->number = $budgetNumber;
+        $budget->delivery = $budgetNumber;
         $budget->delivery = $delivery;
         $budget->products = $cart;
         $budget->save();
