@@ -15,25 +15,16 @@ class OrderManagerController extends Controller
   public function manager($supplier)
   {
 
-
-
-    $order = Budget::all()->count();
-
-
     $orders = Budget::where('products.supplier', $supplier)->get();
 
-    $interactionsNumber = Budget::where('products.supplier', $supplier)->get()->count();
-
-    $products = [];
     $delivery = [];
     $updated_at = "";
 
-
-    foreach ($orders as $key => $teste) {
+    foreach ($orders as $key => $firtValue) {
       
-      $delivery = $teste['delivery'];
+      $delivery = $firtValue['delivery'];
 
-      foreach ($teste['products'] as $newKey => $value){
+      foreach ($firtValue['products'] as $newKey => $value){
       
       $supplierOrder[$key][$newKey] = [
         'delivery' => $delivery,
@@ -48,23 +39,19 @@ class OrderManagerController extends Controller
           'inventory' => $value['inventory'],
           'quantity' => $value['quantity'],
           'date' => $updated_at,
-          'numberOrder' => $teste['number'],
-          'idOrder' => $teste['_id'],
-          'date' => $teste['updated_at']
+          'numberOrder' => $firtValue['number'],
+          'idOrder' => $firtValue['_id'],
+          'date' => $firtValue['updated_at']
         ],
 
-       
       ];
 
       if($supplierOrder[$key][$newKey]['products']['supplier'] != $supplier){
         unset($supplierOrder[$key][$newKey]);
       }
       
-     
     }
   }
-
-
 
     dd($supplierOrder);
 
