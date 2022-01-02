@@ -13,12 +13,12 @@
             <div class="col-md-10 container d-flex p-2 align-self-center ">
                 <div class="input-group input-group-sm mb-3 mx-3 ">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Nome Completo</span>
-                    <input type="text" name="name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <input type="text" name="name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required>
                 </div>
 
                 <div class="input-group input-group-sm mb-3 mx-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Telefone</span>
-                    <input type="text" name="phoneNumber" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <input type="text" name="phoneNumber" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"required>
                 </div>
 
             </div>
@@ -26,27 +26,27 @@
 
                 <div class="input-group input-group-sm mb-3 mx-3 ">
                     <span class="input-group-text" id="inputGroup-sizing-sm">CEP</span>
-                    <input type="text" name="CEP" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <input type="text" name="CEP" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required>
                 </div>
 
                 <div class="input-group input-group-sm mb-3 mx-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Estado</span>
-                    <input type="text" name="state" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <input type="text" name="state" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required>
                 </div>
 
                 <div class="input-group input-group-sm mb-3 mx-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Cidade</span>
-                    <input type="text" name="cidade" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <input type="text" name="city" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required>
                 </div>
 
                 <div class="input-group input-group-sm mb-3 mx-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Rua</span>
-                    <input type="text" name="street" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <input type="text" name="street" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required>
                 </div>
 
                 <div class="input-group input-group-sm mb-3 mx-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Nº</span>
-                    <input type="text" name="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <input type="text" name="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required>
                 </div>
 
             </div>

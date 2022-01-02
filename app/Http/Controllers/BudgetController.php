@@ -123,14 +123,16 @@ class BudgetController extends Controller
             "name" => $request->name,
             "phoneNumber" => $request->phoneNumber,
             "CEP" => $request->CEP,
-            "street" => $request->street,
-            "number" => $request->number,
+            "street" => $request->street, 
+            "state" => $request->state,
+            "city" =>$request->city,
+            "number" =>$request->number           
         ];
         $budget->idClient = $idCliente;
         $budget->number = $budgetNumber;
-        $budget->delivery = $budgetNumber;
-        $budget->delivery = $delivery;
+        $budget->delivery = $delivery;       
         $budget->products = $cart;
+        
         $budget->save();
         session()->forget('cart');
 

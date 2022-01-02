@@ -2,6 +2,8 @@
 @section('title','Impeto')
 @section('content')
 
+
+
 <div style="margin-top: 50px;" class="container d-flex ">
     @foreach ($supplierOrder['products'] as $key=> $value)
     @if ($value['status'] == "Novo" )
