@@ -41,8 +41,11 @@ class OrderManagerController extends Controller
           'date' => $updated_at,
           'numberOrder' => $firtValue['number'],
           'idOrder' => $firtValue['_id'],
-          'date' => $firtValue['updated_at']
+          'date' => $firtValue['updated_at'],
+          'status' => $value['status']
         ],
+        'date'=>$firtValue['created_at'],
+       
 
       ];
 
@@ -53,8 +56,7 @@ class OrderManagerController extends Controller
     }
   }
 
-    dd($supplierOrder);
-
+  
 
     return view('master.viewOrders', ['supplierOrder' => $supplierOrder]);
   }
