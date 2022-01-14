@@ -75,17 +75,20 @@
         </table>
         </tbody>
     </fieldset>
+    <form action="/pedidos/atualizar" method="POST">
+        @csrf
+    
     <fieldset class="border p-2 mt-5 ">
         <legend style="color: white;" class="w-auto">Atendimento</legend>
 
-        <form action="" method="POST">
+       
 
 
             <div class="alert alert-light" role="alert">
                 <h2 class="align-middle"> Status do atendimento </h2>
                 <div class="input-group mb-3">
                   
-                    <select class="form-select" id="inputGroupSelect01">
+                    <select name="status" class="form-select" id="inputGroupSelect01">
                         @if( $productOrder['status'] == "Novo")
                         <option value="{{$productOrder['status']}}" selected>{{$productOrder['status']}}</option>
                         <option value="Em andamento">Em andamento</option>
@@ -99,9 +102,11 @@
                         <option value="Novo">Novo</option>
                         <option value="Em andamento">Em andamento</option>
                         @endif
-
-
                     </select>
+
+                    <input type="hidden" value="{{$idOrder}}" name="id">
+
+                    
                 </div>
 
 

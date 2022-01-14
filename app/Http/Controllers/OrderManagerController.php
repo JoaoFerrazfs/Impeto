@@ -69,9 +69,6 @@ class OrderManagerController extends Controller
     $supplier = auth()->user()->supplier;
     $deliveryOrder =  $product[0]['delivery'];
     $productOrder = [];
-
-
-
     foreach ($product as $key => $valuet) {
 
 
@@ -83,9 +80,17 @@ class OrderManagerController extends Controller
         };
       }
     }
+  
+    
+    return view('master.viewOrderDetail', ['productOrder' => $productOrder, 'deliveryOrder' => $deliveryOrder,'idOrder'=>$products['idOrder']]);
+  }
+
+  public function updateStatusOrder(Request $request){
+
+    $order = Budget::find($request->id)->get();
+    dump ($order);
+    dump ($request->id);
 
 
-
-    return view('master.viewOrderDetail', ['productOrder' => $productOrder, 'deliveryOrder' => $deliveryOrder]);
   }
 }
