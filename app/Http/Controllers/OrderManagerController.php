@@ -21,42 +21,41 @@ class OrderManagerController extends Controller
     $updated_at = "";
 
     foreach ($orders as $key => $firtValue) {
-      
+
       $delivery = $firtValue['delivery'];
 
-      foreach ($firtValue['products'] as $newKey => $value){
-      
-      $supplierOrder[$key][$newKey] = [
-        'delivery' => $delivery,
-        'products' => [
-          'id' => $value['id'],
-          'cod' => $value['cod'],
-          'name' => $value['name'],
-          'price' => $value['price'],
-          'supplier' => $value['supplier'],
-          'userSupplier' => $value['userSupplier'],
-          'image' => $value['image'],
-          'inventory' => $value['inventory'],
-          'quantity' => $value['quantity'],
-          'date' => $updated_at,
-          'numberOrder' => $firtValue['number'],
-          'idOrder' => $firtValue['_id'],
-          'date' => $firtValue['updated_at'],
-          'status' => $value['status']
-        ],
-        'date'=>$firtValue['created_at'],
-       
+      foreach ($firtValue['products'] as $newKey => $value) {
 
-      ];
+        $supplierOrder[$key][$newKey] = [
+          'delivery' => $delivery,
+          'products' => [
+            'id' => $value['id'],
+            'cod' => $value['cod'],
+            'name' => $value['name'],
+            'price' => $value['price'],
+            'supplier' => $value['supplier'],
+            'userSupplier' => $value['userSupplier'],
+            'image' => $value['image'],
+            'inventory' => $value['inventory'],
+            'quantity' => $value['quantity'],
+            'date' => $updated_at,
+            'numberOrder' => $firtValue['number'],
+            'idOrder' => $firtValue['_id'],
+            'date' => $firtValue['updated_at'],
+            'status' => $value['status']
+          ],
+          'date' => $firtValue['created_at'],
 
-      if($supplierOrder[$key][$newKey]['products']['supplier'] != $supplier){
-        unset($supplierOrder[$key][$newKey]);
+
+        ];
+
+        if ($supplierOrder[$key][$newKey]['products']['supplier'] != $supplier) {
+          unset($supplierOrder[$key][$newKey]);
+        }
       }
-      
     }
-  }
 
-  
+
 
     return view('master.viewOrders', ['supplierOrder' => $supplierOrder]);
   }
@@ -80,17 +79,35 @@ class OrderManagerController extends Controller
         };
       }
     }
-  
-    
-    return view('master.viewOrderDetail', ['productOrder' => $productOrder, 'deliveryOrder' => $deliveryOrder,'idOrder'=>$products['idOrder']]);
+
+
+    return view('master.viewOrderDetail', ['productOrder' => $productOrder, 'deliveryOrder' => $deliveryOrder, 'idOrder' => $products['idOrder']]);
   }
 
-  public function updateStatusOrder(Request $request){
+  public function updateStatusOrder(Request $request)
+  {
 
-    $order = Budget::find($request->id)->get();
-    dump ($order);
-    dump ($request->id);
+    $order = Budget::where('_id', $request->id)->get();
 
 
+
+    $orders = json_decode($order, true);
+
+
+    foreach ($orders as $key => $value) {
+      foreach ($value['products'] as $newkey => $newValue) {
+        $products[$newkey] = $newValue;
+
+        if ($newValue['name'] == $request['name']) {
+          $products[$newkey]['status'] =   $request['status'];
+        }
+      }
+    };
+
+    $order = ['products' => $products];
+
+    Budget::find($request['id'])->update($order);
+
+    return redirect('/pedidos/' . auth()->user()->supplier);
   }
 }

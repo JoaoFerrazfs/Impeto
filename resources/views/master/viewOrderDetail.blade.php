@@ -105,6 +105,7 @@
                     </select>
 
                     <input type="hidden" value="{{$idOrder}}" name="id">
+                    <input type="hidden" value="{{$productOrder['name']}}" name="name">
 
                     
                 </div>
