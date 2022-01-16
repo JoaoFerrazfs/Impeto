@@ -204,31 +204,43 @@ class ProductController extends Controller
         return redirect('/meusProdutos/' . $user);
     }
 
-    public function index(){
-        $product = new Product(); 
-        $products = Product::where('availability', 'Disponível')->get();      
+    public function index()
+    {
+        $product = new Product();
+        $products = Product::where('availability', 'Disponível')->get();
         return view('welcome', ['products' => $products]);
     }
-    public function viewProduct(Request $request){      
+    public function viewProduct(Request $request)
+    {
 
-        $product = new Product();         
-        $request = $request->all();       
+        $product = new Product();
+        $request = $request->all();
         $products = Product::find($request["id"]);
 
-        if($products->availability != "Disponível"){
+        if ($products->availability != "Disponível") {
             return redirect('/');
-        }else{
+        } else {
             return view('client.viewProductClient', ['products' => $products]);
         }
-
-        
-        
-       
-       
-
-     
-
     }
 
-   
+    public function changedStore($id, $quantity)
+    {
+
+
+        $newInventory = 0;
+
+        $product = Product::where('_id', $id)->get();
+
+        foreach ($product as $key => $value) {
+            $newInventory = $value->inventory - $quantity;
+        }
+
+
+        $inventory = ['inventory' => $newInventory];
+
+
+
+        $product = Product::where('_id', $id)->update($inventory);
+    }
 }

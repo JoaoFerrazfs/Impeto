@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Budget;
+use App\Http\Controllers\ProductController;
 
 use Illuminate\Http\Request;
 
@@ -81,6 +82,8 @@ class BudgetController extends Controller
 
     public function newBudget(Request $request)
     {
+        
+
         $user = new User();
         $userData = [
             "id" => auth()->user()->id,
@@ -114,6 +117,9 @@ class BudgetController extends Controller
     public function saveBudget(Request $request)
     {
         $budget = new Budget();
+        $Product = new ProductController;
+            
+   
 
         $budgetNumber = Budget::all()->count() + 1;
         $idCliente = auth()->user()->id;
@@ -132,6 +138,18 @@ class BudgetController extends Controller
         $budget->number = $budgetNumber;
         $budget->delivery = $delivery;       
         $budget->products = $cart;
+
+
+
+        foreach  ($cart as $key => $value){
+            $id = $value['id'];
+            $inventory = $value['quantity'];
+
+            
+
+            $Product->changedStore($id,$inventory);
+               
+        }
         
         $budget->save();
         session()->forget('cart');

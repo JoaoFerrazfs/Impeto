@@ -9,6 +9,7 @@ use Facade\Ignition\DumpRecorder\Dump;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\Foreach_;
 
+
 class OrderManagerController extends Controller
 {
 
@@ -45,8 +46,6 @@ class OrderManagerController extends Controller
             'status' => $value['status']
           ],
           'date' => $firtValue['created_at'],
-
-
         ];
 
         if ($supplierOrder[$key][$newKey]['products']['supplier'] != $supplier) {
@@ -54,9 +53,6 @@ class OrderManagerController extends Controller
         }
       }
     }
-
-
-
     return view('master.viewOrders', ['supplierOrder' => $supplierOrder]);
   }
 
@@ -84,15 +80,10 @@ class OrderManagerController extends Controller
     return view('master.viewOrderDetail', ['productOrder' => $productOrder, 'deliveryOrder' => $deliveryOrder, 'idOrder' => $products['idOrder']]);
   }
 
-  public function updateStatusOrder(Request $request)
-  {
+  public function updateStatusOrder(Request $request)  {
 
     $order = Budget::where('_id', $request->id)->get();
-
-
-
     $orders = json_decode($order, true);
-
 
     foreach ($orders as $key => $value) {
       foreach ($value['products'] as $newkey => $newValue) {
@@ -110,4 +101,6 @@ class OrderManagerController extends Controller
 
     return redirect('/pedidos/' . auth()->user()->supplier);
   }
+
+  
 }
