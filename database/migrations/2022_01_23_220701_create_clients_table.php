@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBudgetTale extends Migration
+class CreateClientTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,15 @@ class CreateBudgetTale extends Migration
      */
     public function up()
     {
-        Schema::create('budget_tale', function (Blueprint $table) {
+        Schema::create('clients', function (Blueprint $table) {
             $table->id();
-            $table->string('cod');
             $table->string('name');
-            $table->float('price');
-            $table->int('amount');
+            $table->string('cpf');
+            $table->string('phoneNumber');
+            $table->string('cep');
+            $table->string('state');
+            $table->string('street');
+            $table->int('number');
             $table->timestamps();
         });
     }
@@ -30,6 +33,6 @@ class CreateBudgetTale extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('budget_tale');
+        Schema::dropIfExists('clients');
     }
 }

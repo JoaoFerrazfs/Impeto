@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\OrderManagerController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ClientController;
 
 
 /*
@@ -48,3 +49,4 @@ Route::post('/pedido/confirmado',[BudgetController::class,'saveBudget']) ->middl
 Route::get('/pedidos/{id}',[OrderManagerController::class,'manager'])->middleware('auth');
 Route::post('/pedidos/visualizar',[OrderManagerController::class,'showOrder']);
 Route::post('/pedidos/atualizar',[OrderManagerController::class,'updateStatusOrder']);
+Route::post('/pesquisaCPF',[ClientController::class,'findClient']);

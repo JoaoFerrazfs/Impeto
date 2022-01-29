@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\User;
 use App\Models\Budget;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ClientController;
 
 use Illuminate\Http\Request;
 
@@ -118,9 +119,9 @@ class BudgetController extends Controller
     {
         $budget = new Budget();
         $Product = new ProductController;
-            
+        $client = new ClientController();  
    
-
+        
         $budgetNumber = Budget::all()->count() + 1;
         $idCliente = auth()->user()->id;
         $cart = $request->session()->get('cart');
@@ -128,12 +129,16 @@ class BudgetController extends Controller
         $delivery = [
             "name" => $request->name,
             "phoneNumber" => $request->phoneNumber,
-            "CEP" => $request->CEP,
+            "cpf" => $request->cpf,
+            "cep" => $request->cep,
             "street" => $request->street, 
             "state" => $request->state,
             "city" =>$request->city,
             "number" =>$request->number           
         ];
+
+        $client->store($delivery);
+        
         $budget->idClient = $idCliente;
         $budget->number = $budgetNumber;
         $budget->delivery = $delivery;       
