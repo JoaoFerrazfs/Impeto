@@ -5,7 +5,7 @@ use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\OrderManagerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ClientController;
-
+use App\Http\Controllers\PdfController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,3 +50,5 @@ Route::get('/pedidos/{id}',[OrderManagerController::class,'manager'])->middlewar
 Route::post('/pedidos/visualizar',[OrderManagerController::class,'showOrder']);
 Route::post('/pedidos/atualizar',[OrderManagerController::class,'updateStatusOrder']);
 Route::post('/pesquisaCPF',[ClientController::class,'findClient']);
+
+Route::get('/geraPdf',[PdfController::class,'createPdf']);

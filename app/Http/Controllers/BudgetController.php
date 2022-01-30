@@ -7,6 +7,11 @@ use App\Models\User;
 use App\Models\Budget;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\PdfController;
+use PDF;
+
+
+
 
 use Illuminate\Http\Request;
 
@@ -83,7 +88,7 @@ class BudgetController extends Controller
 
     public function newBudget(Request $request)
     {
-        
+
 
         $user = new User();
         $userData = [
@@ -119,9 +124,9 @@ class BudgetController extends Controller
     {
         $budget = new Budget();
         $Product = new ProductController;
-        $client = new ClientController();  
-   
-        
+        $client = new ClientController();
+
+
         $budgetNumber = Budget::all()->count() + 1;
         $idCliente = auth()->user()->id;
         $cart = $request->session()->get('cart');
@@ -131,33 +136,39 @@ class BudgetController extends Controller
             "phoneNumber" => $request->phoneNumber,
             "cpf" => $request->cpf,
             "cep" => $request->cep,
-            "street" => $request->street, 
+            "street" => $request->street,
             "state" => $request->state,
-            "city" =>$request->city,
-            "number" =>$request->number           
+            "city" => $request->city,
+            "number" => $request->number
         ];
 
         $client->store($delivery);
-        
+
         $budget->idClient = $idCliente;
         $budget->number = $budgetNumber;
-        $budget->delivery = $delivery;       
+        $budget->delivery = $delivery;
         $budget->products = $cart;
 
 
 
-        foreach  ($cart as $key => $value){
+        foreach ($cart as $key => $value) {
             $id = $value['id'];
             $inventory = $value['quantity'];
 
-            
 
-            $Product->changedStore($id,$inventory);
-               
+
+            $Product->changedStore($id, $inventory);
         }
+
+
         
+        $request->session()->put('budget',$budget);
+        
+       
+       
         $budget->save();
         session()->forget('cart');
+
 
         return redirect("/")->with('success', 'Pedido ' . $budgetNumber . ' realizado. Consulte sua lista de pedidos.');
     }

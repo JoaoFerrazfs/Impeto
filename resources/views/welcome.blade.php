@@ -53,6 +53,12 @@
 
 </nav>
 
+<div class="container">
+  <a class="btn btn-success mt-3" href="/geraPdf">
+Gerar PDF do Ultimo Pedido
+  </a>
+</div>
+
 <nav class="card-container" style="margin:50px 280px ; display : flex;">
 
   @foreach ($products as $product)
