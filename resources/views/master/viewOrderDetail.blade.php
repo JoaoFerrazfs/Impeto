@@ -26,8 +26,8 @@
         <div class="col-md-10 container d-flex p-2 align-self-center ">
 
             <div class="input-group input-group-sm mb-3 mx-3 ">
-                <span class="input-group-text" id="inputGroup-sizing-sm">CEP</span>
-                <input type="text" name="CEP" value="{{$deliveryOrder['CEP']}}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm " disabled style="background-color: white;">
+                <span class="input-group-text" id="inputGroup-sizing-sm">cep</span>
+                <input type="text" name="cep" value="{{$deliveryOrder['cep']}}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm " disabled style="background-color: white;">
             </div>
 
             <div class="input-group input-group-sm mb-3 mx-3">

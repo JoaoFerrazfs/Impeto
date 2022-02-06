@@ -16,16 +16,15 @@ class OrderManagerController extends Controller
   public function manager($supplier)
   {
 
-    $orders = Budget::where('products.supplier', $supplier)->get();
-
     $delivery = [];
     $updated_at = "";
-
+    $orders = Budget::all();
     foreach ($orders as $key => $firtValue) {
 
       $delivery = $firtValue['delivery'];
 
       foreach ($firtValue['products'] as $newKey => $value) {
+
 
         $supplierOrder[$key][$newKey] = [
           'delivery' => $delivery,
@@ -45,15 +44,23 @@ class OrderManagerController extends Controller
             'date' => $firtValue['updated_at'],
             'status' => $value['status']
           ],
+          'note' => $firtValue['note'],
           'date' => $firtValue['created_at'],
         ];
+
 
         if ($supplierOrder[$key][$newKey]['products']['supplier'] != $supplier) {
           unset($supplierOrder[$key][$newKey]);
         }
       }
     }
-    return view('master.viewOrders', ['supplierOrder' => $supplierOrder]);
+    $supplierOrder = array_filter($supplierOrder);
+    if ($supplierOrder == null) {
+
+      return redirect()->back()->with('success', 'Não há nenhum novo pedido');
+    } else {
+      return view('master.viewOrders', ['supplierOrder' => $supplierOrder]);
+    }
   }
 
   public function showOrder(Request $request)
@@ -80,7 +87,8 @@ class OrderManagerController extends Controller
     return view('master.viewOrderDetail', ['productOrder' => $productOrder, 'deliveryOrder' => $deliveryOrder, 'idOrder' => $products['idOrder']]);
   }
 
-  public function updateStatusOrder(Request $request)  {
+  public function updateStatusOrder(Request $request)
+  {
 
     $order = Budget::where('_id', $request->id)->get();
     $orders = json_decode($order, true);
@@ -101,6 +109,4 @@ class OrderManagerController extends Controller
 
     return redirect('/pedidos/' . auth()->user()->supplier);
   }
-
-  
 }

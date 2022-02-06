@@ -17,7 +17,7 @@ class ClientController extends Controller
 
         $data = $client::where('cpf', $request->cpf)->get();
 
-        dump($data);
+     
     }
 
     public function find($cpf)

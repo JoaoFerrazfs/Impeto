@@ -2,6 +2,12 @@
 @section('title','Impeto')
 @section('content')
 
+<div class="container">
+  @if(@session('success'))
+  <p class=" alert alert-info border border-white mt-5 ">{{session('success')}}</p>
+  @endif
+</div>
+
 <div class="container fuctionNavegation" style="margin-top: 50px;">
 
     <div class="alert alert-light text-center ">
