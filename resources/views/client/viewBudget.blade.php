@@ -8,7 +8,7 @@
     <div class="">
 
         <form action="/pesquisaCPF" method="POST" class="row g-3">
-        @csrf     
+            @csrf
             <div class="col-auto">
                 <label for="inputPassword2" class="visually-hidden">CPF</label>
                 <input type="text" name="cpf" class="form-control" id="inputPassword2" placeholder="Digite seu CPF">
@@ -132,6 +132,23 @@
                     <span class="input-group-text" id="inputGroup-sizing-sm">cvc</span>
                     <input type="text" name="cvc" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                 </div>
+
+
+
+
+            </div>
+        </fieldset>
+
+        <fieldset class="border p-2 container mt-5">
+            <legend style="color: white;" class="w-auto">Observação</legend>
+
+
+            <div class="col-md-10 container d-flex p-2 align-self-center ">
+                <div class="input-group input-group-sm mb-3 mx-3 ">                   
+                    <textarea type="text" name="note" class="form-control" > </textarea>
+                </div>
+
+            
 
 
 

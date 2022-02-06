@@ -126,6 +126,8 @@ class BudgetController extends Controller
         $Product = new ProductController;
         $client = new ClientController();
 
+        
+
 
         $budgetNumber = Budget::all()->count() + 1;
         $idCliente = auth()->user()->id;
@@ -148,6 +150,8 @@ class BudgetController extends Controller
         $budget->number = $budgetNumber;
         $budget->delivery = $delivery;
         $budget->products = $cart;
+        $budget->note =  $request->note;
+       
 
 
 

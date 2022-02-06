@@ -35,8 +35,8 @@ class PdfController extends Controller
     $options->set('isRemoteEnabled', TRUE);
     $dompdf = new Dompdf($options);
 
-    $note ='Teste';
-    $dompdf = PDF::loadView('client.budgetPdf', compact('budget','amount','note'));
+    
+    $dompdf = PDF::loadView('client.budgetPdf', compact('budget','amount'));
     $dompdf->setPaper('a4', 'portrait');
     $dompdf->render();
 

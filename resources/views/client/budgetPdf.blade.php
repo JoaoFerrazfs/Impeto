@@ -142,13 +142,14 @@
         <fieldset>
             <legend>Observação</legend>
 
-            <div style=" margin-top: 30px;">
+            @if($budget['note'] == null)
+            <textarea>Não foram feitas observações</textarea>
+            @else
+            <textarea> {{$budget['note']}}</textarea>
+            @endif
 
-                <textarea style=" margin-left: 25px; width:90% inline-block;">
-                {{$note}}
+            </textarea>
 
-                </textarea>
-            </div>
         </fieldset>
     </div>
 </div>
