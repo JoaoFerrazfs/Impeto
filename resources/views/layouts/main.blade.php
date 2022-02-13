@@ -16,33 +16,27 @@
     <!-- Styles -->
     <link rel="stylesheet" href="/css/styles.css">
 
+    <!--Icones-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
 </head>
 
-
-
-
-<body class="container-fluid" style="background-color:black;">
-    <header>
-        <nav class=" container navbar navbar-expand-lg navbar-dark bg-dark">
-
-            <a class="navbar-brand" href="/">Impeto Plataforma</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+<body style="background-color: black;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            </div>
 
-            <div class="col-sm-7">
-                <form class="container-fluid">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="O que você precisa?" aria-label="Username" aria-describedby="basic-addon1">
-                        <button class="btn btn-sm btn-outline-secondary" type="button">Buscar</button>
-                    </div>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <a class="navbar-brand" href="#">Impeto</a>
+
+                <form class="container-fluid d-flex">
+                    <input class="form-control me-2" type="search" placeholder="O que você precisa?" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i> </button>
                 </form>
-            </div>
 
-            <div class="" id="navbarScroll">
-                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Categorias
@@ -55,47 +49,28 @@
                             <li><a class="dropdown-item" href="#">Categoria 1</a></li>
                         </ul>
                     </li>
-
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="#">Ofertas</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Novidade</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Menor Preço</a>
-                    </li> -->
-
-
                 </ul>
 
+                @auth
+                <div class="">
+                    <a type="button" href="/carrinho/visualizar"class="btn btn-outline-success">Carrinho <i class="bi bi-cart-check"></i> </a>
+                </div>
+                @endauth
+
+                <div class="mx-1">
+                    <a type="button" href="/login" class="btn btn-success">Entre </a>
+                   
+                </div>
             </div>
-            @auth
-            <div class="col mx-5">
-                <a type="button" href="/carrinho/visualizar" style="text-align: center; font-size: 12px;" class="btn btn-light btn-lg" >Carrinho
-                </a>
-
-
-            </div>
-            @endauth
-
-            <div class="col">
-                <a type="button" href="/login" style="text-align: center; font-size: 12px;" class="btn btn-success btn-lg" >Entre
-                </a>
-
-
-            </div>
-
-        </nav>
-    </header>
-
-
+        </div>
+    </nav>
 
     <section class="content">
         @yield('content')
     </section>
 </body>
+
+
+
 
 </html>
