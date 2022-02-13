@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BannerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\OrderManagerController;
@@ -50,5 +51,10 @@ Route::get('/pedidos/{id}',[OrderManagerController::class,'manager'])->middlewar
 Route::post('/pedidos/visualizar',[OrderManagerController::class,'showOrder']);
 Route::post('/pedidos/atualizar',[OrderManagerController::class,'updateStatusOrder']);
 Route::post('/pesquisaCPF',[ClientController::class,'findClient']);
+Route::post('/novoBanner',[BannerController::class,'create']);
+
+Route::get('/formBanner', function () {
+    return view('client.formBanner') ;
+});
 
 Route::get('/geraPdf',[PdfController::class,'createPdf']);

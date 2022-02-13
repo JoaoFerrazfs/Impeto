@@ -21,9 +21,9 @@
 
 
 
-<body style="background-color:black;">
+<body class="container-fluid" style="background-color:black;">
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class=" container navbar navbar-expand-lg navbar-dark bg-dark">
 
             <a class="navbar-brand" href="/">Impeto Plataforma</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,7 +56,7 @@
                         </ul>
                     </li>
 
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="#">Ofertas</a>
                     </li>
 
@@ -66,37 +66,32 @@
 
                     <li class="nav-item">
                         <a class="nav-link" href="#">Menor Preço</a>
-                    </li>
+                    </li> -->
 
 
                 </ul>
 
             </div>
             @auth
-            <div class="container-fluid col-sm-1">
-                <button type="button" class="btn btn-light btn-lg" style="margin-left:50px; text-align: center;font-size: 20px;">Carrinho
-                    <img src="https://cdn-icons-png.flaticon.com/512/126/126510.png" style="width: 40px;" class="rounded float-end" alt="...">
-                </button>
+            <div class="col mx-5">
+                <a type="button" href="/carrinho/visualizar" style="text-align: center; font-size: 12px;" class="btn btn-light btn-lg" >Carrinho
+                </a>
 
 
             </div>
             @endauth
 
-            <div class="container-fluid col-sm-1">
-                <div>
-                    <img src="https://cdn.icon-icons.com/icons2/1769/PNG/512/4092564-about-mobile-ui-profile-ui-user-website_114033.png" style="width: 60px; margin:20px 10px " class="rounded float-end" alt="...">
-                </div>
+            <div class="col">
+                <a type="button" href="/login" style="text-align: center; font-size: 12px;" class="btn btn-success btn-lg" >Entre
+                </a>
 
-                <div class="list-group row-sm-1" style="text-align: center; font-size: 12px;">
-                    <a href="/login" class="list-group-item list-group-item-action">Acessar Conta</a>
-                    <a href="/register" class="list-group-item list-group-item-action">Cadastrar-se</a>
-                </div>
+
             </div>
 
         </nav>
     </header>
 
-    
+
 
     <section class="content">
         @yield('content')
