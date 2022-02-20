@@ -58,7 +58,7 @@
                 @endauth
 
                 <div class="mx-1">
-                    <a type="button" href="/login" class="btn btn-success">Entre </a>
+                    <a type="button" href="/login" class="btn btn-success">Entre <i class="bi bi-box-arrow-in-right"></i> </a>
                    
                 </div>
             </div>

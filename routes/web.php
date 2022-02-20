@@ -6,6 +6,7 @@ use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\OrderManagerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PdfController;
 
 /*
@@ -56,5 +57,12 @@ Route::post('/novoBanner',[BannerController::class,'create']);
 Route::get('/formBanner', function () {
     return view('client.formBanner') ;
 });
+
+Route::get('/confirmarPagamento', function () {
+    return view('client.paymentProcess') ;
+});
+
+Route::get('/pagamento',[PaymentController::class,'payments']);
+
 
 Route::get('/geraPdf',[PdfController::class,'createPdf']);

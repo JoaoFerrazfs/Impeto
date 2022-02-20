@@ -49,7 +49,7 @@ class ClientController extends Controller
             $client->number = $data['number'];
             $client->save();
         } else {
-            dump($this->find($data['cpf']));
+            //dump($this->find($data['cpf']));
         }
     }
 }

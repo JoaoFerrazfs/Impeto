@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\PdfController;
 use PDF;
+use App\Http\Controllers\PaymentController;
 
 
 
@@ -110,6 +111,8 @@ class BudgetController extends Controller
             "amount" => $amount
         ];
 
+        
+
 
 
 
@@ -122,6 +125,7 @@ class BudgetController extends Controller
 
     public function saveBudget(Request $request)
     {
+        
         $budget = new Budget();
         $Product = new ProductController;
         $client = new ClientController();
@@ -148,18 +152,14 @@ class BudgetController extends Controller
 
         $budget->idClient = $idCliente;
         $budget->number = $budgetNumber;
+        $budget->statusPayment = 'Em espera';
         $budget->delivery = $delivery;
         $budget->products = $cart;
         $budget->note =  $request->note;
-       
-
-
 
         foreach ($cart as $key => $value) {
             $id = $value['id'];
             $inventory = $value['quantity'];
-
-
 
             $Product->changedStore($id, $inventory);
         }
@@ -171,9 +171,15 @@ class BudgetController extends Controller
        
        
         $budget->save();
-        session()->forget('cart');
+        //session()->forget('cart');
+
+        $payment = new PaymentController();
+        $paymentLink = $payment->payments($cart);
 
 
-        return redirect("/")->with('success', 'Pedido ' . $budgetNumber . ' realizado. Consulte sua lista de pedidos.');
+       
+        return view('client.paymentProcess', ['paymentLink' =>  $paymentLink]);
+
+       
     }
 }
