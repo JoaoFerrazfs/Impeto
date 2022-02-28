@@ -10,11 +10,7 @@ use Illuminate\Http\Resources\MergeValue;
 
 class PaymentController extends Controller
 {
-    function __construct()
-    {
-
-        $access_token = "TEST-2053630564340672-021921-cb609bcd60dbce3d3d656e076b81ae18-274055464";
-    }
+   
     public function payments($cart)
     {
         $access_token_development = "TEST-2053630564340672-021921-cb609bcd60dbce3d3d656e076b81ae18-274055464";

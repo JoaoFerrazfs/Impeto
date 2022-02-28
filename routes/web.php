@@ -6,6 +6,7 @@ use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\OrderManagerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\deliveryRouteController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PdfController;
 
@@ -66,3 +67,5 @@ Route::get('/pagamento',[PaymentController::class,'payments']);
 
 
 Route::get('/geraPdf',[PdfController::class,'createPdf']);
+
+Route::get('/frete',[deliveryRouteController::class,'portage']);
