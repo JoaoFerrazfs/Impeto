@@ -9,8 +9,7 @@
 
         <form action="/pesquisaCPF" method="POST" class="row g-3">
             @csrf
-            <div class="col-auto">
-                <label for="inputPassword2" class="visually-hidden">CPF</label>
+            <div class="col-auto">                
                 <input type="text" name="cpf" class="form-control" id="inputPassword2" placeholder="Digite seu CPF">
             </div>
             <div class="col-auto">
@@ -97,14 +96,27 @@
                 </tbody>
                 <tfoot class="table-secondary">
                     <tr>
-                        <td>Valor do Pedido </td>
+                        <td>Valor dos Produtos </td>
+                        <td> </td>
+                        <td> </td>
+                        <td>{{ session()->get('portage') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Valor do Frete </td>
                         <td> </td>
                         <td> </td>
                         <td>{{$amount}}</td>
                     </tr>
                 </tfoot>
             </table>
+
+
         </fieldset>
+
+        <div class="alert alert-light text-center " role="alert">
+            <h2 >Valor total da compra</h2>
+            <h3 style="  color: red;" class=" text-uppercase"> R$  {{$amount +  session()->get('portage')  }}</h3>
+        </div>
 
 
 

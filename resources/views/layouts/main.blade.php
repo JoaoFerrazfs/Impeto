@@ -55,13 +55,13 @@
                 <!-- Button trigger modal -->
                 @if( session()->get('portage') != null)
                 <div class="mx-1">
-                    <button type="button" href="/carrinho/visualizar" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button"class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Frete: R$: {{ session()->get('portage') }}
                     </button>
                 </div>
                 @else
                 <div class="mx-1">
-                    <button type="button" href="/carrinho/visualizar" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Frete
+                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Frete
                         <i class="bi bi-truck"></i>
                     </button>
                 </div>
@@ -70,7 +70,7 @@
 
                 @auth
                 <div class="">
-                    <a type="button" class="btn btn-outline-success">Carrinho <i class="bi bi-cart-check"></i> </a>
+                    <a href="/carrinho/visualizar" class="btn btn-outline-success">Carrinho <i class="bi bi-cart-check"></i> </a>
                 </div>
                 @endauth
 

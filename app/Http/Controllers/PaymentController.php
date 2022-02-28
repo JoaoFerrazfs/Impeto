@@ -10,7 +10,7 @@ use Illuminate\Http\Resources\MergeValue;
 
 class PaymentController extends Controller
 {
-   
+
     public function payments($cart)
     {
         $access_token_development = "TEST-2053630564340672-021921-cb609bcd60dbce3d3d656e076b81ae18-274055464";
@@ -18,6 +18,7 @@ class PaymentController extends Controller
         MercadoPago\SDK::setAccessToken($access_token_production);
         $preference = new MercadoPago\Preference();
         $item = [];
+        $frete = [];
         foreach ($cart as $key => $products) {
 
 
@@ -28,6 +29,21 @@ class PaymentController extends Controller
             $item[$key]->unit_price = $products['price'];
             $item[$key]->installments = $products['cod'];
         }
+
+
+        $frete[$key] = new MercadoPago\Item();
+        $frete[$key]->title = 'Frete';
+        $frete[$key]->quantity = 1;
+        $frete[$key]->unit_price = session()->get('portage');
+        $frete[$key]->installments = 'Frete';
+
+
+
+
+
+
+        $item =  array_merge($frete, $item);
+
 
 
         foreach ($item as  $key => $value) {
@@ -47,8 +63,8 @@ class PaymentController extends Controller
         $preference->external_reference = 001;
         $preference->save();
         $link = $preference->init_point;
-     
-       
+
+
         return $link;
     }
 }
