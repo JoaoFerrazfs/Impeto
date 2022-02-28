@@ -15,12 +15,12 @@
             </div>
             <div class="col-auto">
                 <button type="submit" class="btn btn-success mb-3">Pesquisar Dados</button>
-            </div>
+            </div class="col-auto">
         </form>
 
 
     </div>
-    <form action='/pedido/confirmado' method="post">   <!--<form action="/pedido/confirmado" method="post">-->
+    <form action='/pedido/confirmado' method="post">
         @csrf
         <fieldset class="border p-2 container">
             <legend style="color: white;" class="w-auto">Dados Pessoais</legend>
@@ -43,6 +43,7 @@
                 </div>
 
             </div>
+
             <div class="col-md-10 container d-flex p-2 align-self-center ">
 
                 <div class="input-group input-group-sm mb-3 mx-3 ">
@@ -104,6 +105,8 @@
                 </tfoot>
             </table>
         </fieldset>
+
+
 
         <fieldset class="border p-2 container mt-5">
             <legend style="color: white;" class="w-auto">Observação</legend>

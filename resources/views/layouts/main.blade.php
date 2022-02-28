@@ -51,19 +51,84 @@
                     </li>
                 </ul>
 
+
+                <!-- Button trigger modal -->
+                @if( session()->get('portage') != null)
+                <div class="mx-1">
+                    <button type="button" href="/carrinho/visualizar" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Frete: R$: {{ session()->get('portage') }}
+                    </button>
+                </div>
+                @else
+                <div class="mx-1">
+                    <button type="button" href="/carrinho/visualizar" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Frete
+                        <i class="bi bi-truck"></i>
+                    </button>
+                </div>
+
+                @endif
+
                 @auth
                 <div class="">
-                    <a type="button" href="/carrinho/visualizar"class="btn btn-outline-success">Carrinho <i class="bi bi-cart-check"></i> </a>
+                    <a type="button" class="btn btn-outline-success">Carrinho <i class="bi bi-cart-check"></i> </a>
                 </div>
                 @endauth
 
                 <div class="mx-1">
                     <a type="button" href="/login" class="btn btn-success">Entre <i class="bi bi-box-arrow-in-right"></i> </a>
-                   
+
                 </div>
             </div>
         </div>
     </nav>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h5 class="modal-title" id="exampleModalLabel">Calcular frete </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                </div>
+                <div class=" mx-3 mt-3">
+                    <h4>Local de Entrega <i style="width: 50px;" class=" mx-5 bi bi-truck"></i> </h4>
+
+                </div>
+
+                <form method="post" action="/frete" class="mt-2 ">
+                    @csrf
+
+
+                    <div class="col-auto">
+                        <input type="text" name="address" class="form-control" id="address" placeholder="Digite seu endereço ou frete">
+                    </div>
+
+
+                    <div class="modal-footer m-2">
+
+
+
+                        <button type="submit" class="btn btn-success"><i class="bi bi-calculator"></i> Calcular</button>
+
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
+                    </div>
+                </form>
+
+
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+    </div>
+    </div>
+
+
 
     <section class="content">
         @yield('content')

@@ -68,4 +68,4 @@ Route::get('/pagamento',[PaymentController::class,'payments']);
 
 Route::get('/geraPdf',[PdfController::class,'createPdf']);
 
-Route::get('/frete',[deliveryRouteController::class,'portage']);
+Route::post('/frete',[deliveryRouteController::class,'portage']);
