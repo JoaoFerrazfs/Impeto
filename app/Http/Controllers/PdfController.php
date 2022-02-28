@@ -15,8 +15,7 @@ class PdfController extends Controller
   {
 
     $sessao = Session()->all();
-    $budget =  $sessao['budget'];
-
+    $budget =  $sessao['budget']; 
     $amount = 0;
     $quantity =0;
 

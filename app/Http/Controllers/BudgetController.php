@@ -44,18 +44,20 @@ class BudgetController extends Controller
     public function showShoppingList(Request $request)
     {
         $cart = $request->session()->get('cart');
-        $quantity = 0;
-        $amount = 0;
 
-        foreach ($cart as $value) {
-            $quantity = $value["quantity"];
-            $amount =  $amount + ($quantity * $value["price"]);
+        if ($cart == null) {
+            return redirect()->back()->with('success', 'Você ainda não tem um carrinho!');
+        } else {
+            $quantity = 0;
+            $amount = 0;
+
+            foreach ($cart as $value) {
+                $quantity = $value["quantity"];
+                $amount =  $amount + ($quantity * $value["price"]);
+            }
+
+            return view('client.shoppingList', ['cart' => $cart, 'amount' => $amount]);
         }
-
-
-
-
-        return view('client.shoppingList', ['cart' => $cart, 'amount' => $amount]);
     }
 
     public function deleteItemShoppingList(Request $request)
@@ -111,7 +113,7 @@ class BudgetController extends Controller
             "amount" => $amount
         ];
 
-        
+
 
 
 
@@ -125,12 +127,12 @@ class BudgetController extends Controller
 
     public function saveBudget(Request $request)
     {
-        
+
         $budget = new Budget();
         $Product = new ProductController;
         $client = new ClientController();
 
-        
+
 
 
         $budgetNumber = Budget::all()->count() + 1;
@@ -165,11 +167,11 @@ class BudgetController extends Controller
         }
 
 
-        
-        $request->session()->put('budget',$budget);
-        
-       
-       
+
+        $request->session()->put('budget', $budget);
+
+
+
         $budget->save();
         //session()->forget('cart');
 
@@ -177,9 +179,7 @@ class BudgetController extends Controller
         $paymentLink = $payment->payments($cart);
 
 
-       
-        return view('client.paymentProcess', ['paymentLink' =>  $paymentLink]);
 
-       
+        return view('client.paymentProcess', ['paymentLink' =>  $paymentLink]);
     }
 }
