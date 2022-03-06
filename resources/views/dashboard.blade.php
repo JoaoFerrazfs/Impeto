@@ -32,6 +32,15 @@
         </div>
     </div>
 
+    <div class="card cardStyle" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Cadastrar Prestador</h5>
+            <a href="/prestador/registrar" type="submit" class="btn btn-primary btn-lg">
+                <ion-icon name="library-outline"></ion-icon>
+            </a>
+        </div>
+    </div>
+
 </div>
 <div class="container fuctionNavegation" style="margin-top: 50px;">
 

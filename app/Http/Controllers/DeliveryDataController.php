@@ -6,7 +6,7 @@ use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
 
-class deliveryDataController extends Controller
+class DeliveryDataController extends Controller
 {
     public function getDataDelivery($cep){
 

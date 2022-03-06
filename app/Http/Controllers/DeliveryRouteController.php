@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\deliveryDataController;
+use App\Http\Controllers\DeliveryDataController;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
@@ -12,7 +12,7 @@ class deliveryRouteController extends Controller
 
     public function portage(Request $request)
     {
-        $dataDelivery = new deliveryDataController();
+        $dataDelivery = new DeliveryDataController();
         $APIKey = "AIzaSyBwJOgp3_liIwXVbEO6Yk0QRekYvQgOM-o";
         $startAddress = "32210-180";
         $endAddress = $request->address;
