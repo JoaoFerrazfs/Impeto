@@ -13,12 +13,15 @@ class PaymentController extends Controller
 
     public function payments($cart)
     {
+
+       
         $access_token_development = "TEST-2053630564340672-021921-cb609bcd60dbce3d3d656e076b81ae18-274055464";
         $access_token_production = "APP_USR-2053630564340672-021921-cf7594ece4086e3920e52984d5892a55-274055464";
         MercadoPago\SDK::setAccessToken($access_token_production);
         $preference = new MercadoPago\Preference();
         $item = [];
         $frete = [];
+        
         foreach ($cart as $key => $products) {
 
 
@@ -29,16 +32,13 @@ class PaymentController extends Controller
             $item[$key]->unit_price = $products['price'];
             $item[$key]->installments = $products['cod'];
         }
-
+       
 
         $frete[$key] = new MercadoPago\Item();
         $frete[$key]->title = 'Frete';
         $frete[$key]->quantity = 1;
         $frete[$key]->unit_price = session()->get('portage');
         $frete[$key]->installments = 'Frete';
-
-
-
 
 
 

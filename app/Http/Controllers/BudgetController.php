@@ -94,10 +94,10 @@ class BudgetController extends Controller
 
 
         $user = new User();
-        $userData = [
-            "id" => auth()->user()->id,
-            "name" => auth()->user()->name
-        ];
+        // $userData = [
+        //     "id" => auth()->user()->id,
+        //     "name" => auth()->user()->name
+        // ];
 
         $cart = $request->session()->get('cart');
         $quantity = 0;
@@ -121,7 +121,7 @@ class BudgetController extends Controller
         return view('client.viewBudget', [
             'amount' => $amount,
             'cart' => $cart,
-            'userData' => $userData
+            // 'userData' => $userData
         ]);
     }
 
@@ -136,7 +136,7 @@ class BudgetController extends Controller
 
 
         $budgetNumber = Budget::all()->count() + 1;
-        $idCliente = auth()->user()->id;
+        // $idCliente = auth()->user()->id;
         $cart = $request->session()->get('cart');
 
         $delivery = [
@@ -152,7 +152,7 @@ class BudgetController extends Controller
 
         $client->store($delivery);
 
-        $budget->idClient = $idCliente;
+        // $budget->idClient = $idCliente;
         $budget->number = $budgetNumber;
         $budget->statusPayment = 'Em espera';
         $budget->delivery = $delivery;

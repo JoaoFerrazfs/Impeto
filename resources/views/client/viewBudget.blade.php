@@ -7,13 +7,13 @@
 
     <div class="">
 
-        <form action="/pesquisaCPF" method="POST" class="row g-3">
+        <form action="/frete" method="POST" class="row g-3">
             @csrf
-            <div class="col-auto">                
-                <input type="text" name="cpf" class="form-control" id="inputPassword2" placeholder="Digite seu CPF">
+            <div class="col-auto">
+                <input type="text" name="address" class="form-control" id="inputPassword2" placeholder="CEP">
             </div>
             <div class="col-auto">
-                <button type="submit" class="btn btn-success mb-3">Pesquisar Dados</button>
+                <button type="submit" class="btn btn-success mb-3">Usar</button>
             </div class="col-auto">
         </form>
 
@@ -43,33 +43,38 @@
 
             </div>
 
+           
+
             <div class="col-md-10 container d-flex p-2 align-self-center ">
 
+              
+
+              
                 <div class="input-group input-group-sm mb-3 mx-3 ">
                     <span class="input-group-text" id="inputGroup-sizing-sm">CEP</span>
-                    <input type="text" name="cep" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required>
+                    <input type="text" name="cep" class="form-control" value="{{  session()->get('cep') != null  ? session()->get('cep') : 'Digite seu CEP';  }}"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required>
                 </div>
 
                 <div class="input-group input-group-sm mb-3 mx-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Estado</span>
-                    <input type="text" name="state" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required>
+                    <input type="text" name="state" class="form-control" value="{{  session()->get('state') != null  ? session()->get('state') : 'Digite seu Estado';  }}"    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required>
                 </div>
 
                 <div class="input-group input-group-sm mb-3 mx-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Cidade</span>
-                    <input type="text" name="city" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required>
+                    <input type="text" name="city" class="form-control" value="{{  session()->get('town') != null  ? session()->get('town') : 'Digite sua Cidade';  }}"    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required>
                 </div>
 
                 <div class="input-group input-group-sm mb-3 mx-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Rua</span>
-                    <input type="text" name="street" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required>
+                    <input type="text" name="street" class="form-control" value="{{  session()->get('street') != null  ? session()->get('street') : 'Digite sua Rua';  }}"    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required>
                 </div>
 
                 <div class="input-group input-group-sm mb-3 mx-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Nº</span>
-                    <input type="text" name="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required>
+                    <input type="text" name="number" class="form-control" value= "Digite seu numero"    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required>
                 </div>
-
+               
             </div>
         </fieldset>
 
@@ -94,28 +99,48 @@
                     </tr>
                     @endforeach
                 </tbody>
+
+                @if(session()->get('portage') != null)
                 <tfoot class="table-secondary">
                     <tr>
-                        <td>Valor dos Produtos </td>
+                        <td>Valor dos Frete </td>
                         <td> </td>
                         <td> </td>
                         <td>{{ session()->get('portage') }}</td>
                     </tr>
-                    <tr>
-                        <td>Valor do Frete </td>
-                        <td> </td>
-                        <td> </td>
-                        <td>{{$amount}}</td>
-                    </tr>
-                </tfoot>
+                    @else
+
+                    <tfoot class="table-secondary">
+
+
+
+
+
+                        <tr>
+                            <td>Valor do Frete </td>
+                            <td> </td>
+                            <td> </td>
+                            <td>{{ session()->get('portage') }}</td>
+                        </tr>
+
+
+
+                        @endif
+                        <tr>
+                            <td>Valor dos Produtos </td>
+                            <td> </td>
+                            <td> </td>
+                            <td>{{$amount}}</td>
+                        </tr>
+                    </tfoot>
             </table>
 
 
         </fieldset>
 
         <div class="alert alert-light text-center " role="alert">
-            <h2 >Valor total da compra</h2>
-            <h3 style="  color: red;" class=" text-uppercase"> R$  {{$amount +  session()->get('portage')  }}</h3>
+            <h2>Valor total da compra</h2>
+            <h3 style="  color: red;" class=" text-uppercase"> R$ {{$amount +  session()->get('portage')  }}</h3>
         </div>
 
 
