@@ -41,7 +41,7 @@ Route::get('/meusProdutos/editarProdutos/{id}',[ProductController::class,'editPr
 Route::post('/meusProdutos/salvaEdicao',[ProductController::class,'update'])->middleware('auth');
 Route::post('/meusProdutos/status',[ProductController::class,'changeState'])->middleware('auth');
 Route::delete('/meusProdutos/delete/{id}',[ProductController::class,'destroy'])->middleware('auth');
-Route::get('/',[ProductController::class,'index']);
+Route::get('/produtos',[ProductController::class,'index']);
 Route::post('/visualizarProduto',[ProductController::class,'viewProduct']);
 Route::post('/carrinho',[BudgetController::class,'makeShoppingList']);    
 Route::get('/carrinho/visualizar',[BudgetController::class,'showShoppingList']);
@@ -58,7 +58,7 @@ Route::post('/novoBanner',[BannerController::class,'create']);
 
 
 
-
+Route::get('/', function () {return view('welcome') ;});
 Route::get('/formBanner', function () {return view('client.formBanner') ;});
 
 Route::get('/confirmarPagamento', function () {return view('client.paymentProcess');});
@@ -72,11 +72,12 @@ Route::post('/frete',[DeliveryRouteController::class,'portage']);
 
 
 
-Route::get('/prestador/registrar', function () {return view('master.servicesRegistration');
+Route::get('/prestador/registrar', function () {return view('master.services.servicesRegistration');
 });
 
 Route::post('/validaCadastroPrestador',[ServicesController::class,'create']);
-
 Route::get('/prestador/visualizar',[ServicesController::class,'view'])->middleware('auth');
+Route::get('/prestadores',[ServicesController::class,'viewAllServices']);
+
 
 

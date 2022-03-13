@@ -24,9 +24,9 @@ class ServicesController extends Controller
 
             $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
 
-            $requestImage->move(public_path('img/products'), $imageName);
+            $requestImage->move(public_path('img/services'), $imageName);
 
-            $request->image = $imageName;
+            $services->image = $imageName;
 
         $services->save();
 
@@ -35,13 +35,18 @@ class ServicesController extends Controller
     };
     
 }
+
 public function view(){
     $user = auth()->user()->name;
-    $result = Services::where('user','admin')->get();    
-    
-   
-    
+    $result = Services::where('user','admin')->get(); 
     return view('master.services.viewServices',['results'=>$result]);
   
 }
+
+public function viewAllServices(){    
+    $result = Services::all(); 
+    return view('client.services.services',['results'=>$result]);  
+}
+
+
 }

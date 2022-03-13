@@ -195,7 +195,7 @@ class ProductController extends Controller
     {
         $product = new Product();
         $products = Product::where('availability', 'Disponível')->get();
-        return view('welcome', ['products' => $products]);
+        return view('client.products.products', ['products' => $products]);
     }
     public function viewProduct(Request $request)
     {
