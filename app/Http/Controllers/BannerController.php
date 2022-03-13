@@ -42,6 +42,6 @@ class BannerController extends Controller
 
         $banner->save();
 
-        return redirect("/")->with('success', 'Seu Pedido foi realizado! Logo entraremos em contato! ');
+        return redirect("/")->with('', 'Seu Pedido foi realizado! Logo entraremos em contato! ');
 }
 }

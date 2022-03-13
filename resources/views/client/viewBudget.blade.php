@@ -72,7 +72,7 @@
 
                 <div class="input-group input-group-sm mb-3 mx-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Nº</span>
-                    <input type="text" name="number" class="form-control" value= "Digite seu numero"    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required>
+                    <input type="text" name="number" class="form-control" pĺaceholder= "Digite seu numero"    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required>
                 </div>
                
             </div>

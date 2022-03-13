@@ -5,11 +5,9 @@
 
 <!-- Button trigger modal -->
 <a href="{{$paymentLink}}" class="btn btn-primary" >
-
-
   Confirmar Pagamento
 </a>
-{{$paymentLink}}
+
 
 
 

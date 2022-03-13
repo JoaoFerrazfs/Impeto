@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-require_once '/home/joao/desenvolvimento/Projeto/Impeto/vendor/autoload.php';
 
+require_once '../vendor/autoload.php';
 use MercadoPago;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\MergeValue;

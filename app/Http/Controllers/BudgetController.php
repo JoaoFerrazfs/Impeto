@@ -179,7 +179,7 @@ class BudgetController extends Controller
         $paymentLink = $payment->payments($cart);
 
 
-
-        return view('client.paymentProcess', ['paymentLink' =>  $paymentLink]);
+        return redirect($paymentLink);
+        
     }
 }
