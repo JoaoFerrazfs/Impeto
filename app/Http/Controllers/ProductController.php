@@ -79,44 +79,31 @@ class ProductController extends Controller
     {
         $products = Product::where('user', '=', $user)->get();
 
-        return view('master.viewMyProducts', ['products' => $products]);
+        return view('master.products.viewMyProducts', ['products' => $products]);
     }
 
     public function editProducts($id)
     {
         $products = Product::where('_id', '=', $id)->get();
 
-        return view('master.viewProduct', ['products' => $products]);
+        return view('master.products.viewProduct', ['products' => $products]);
     }
 
     public function update(Request $request)
     {
 
         $product = new Product();
-
-
-
         $history = new MovementHistoryController();
-
         $dataHistory = Product::find($request["id"]);
-
-
-
         $requestHandled = $this->data($request);
-
-
 
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $requestImage = $request->image;
-
             $extension = $requestImage->extension();
-
             $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
-
             $requestImage->move(public_path('img/products'), $imageName);
-
             $request->image = $imageName;
-        }
+                }
 
         if ($request->image == null) {
             $request->image = $dataHistory->image;
@@ -234,13 +221,10 @@ class ProductController extends Controller
 
         foreach ($product as $key => $value) {
             $newInventory = $value->inventory - $quantity;
-        }
+           }
 
 
         $inventory = ['inventory' => $newInventory];
-
-
-
         $product = Product::where('_id', $id)->update($inventory);
     }
 }

@@ -56,13 +56,12 @@ Route::post('/pedidos/atualizar',[OrderManagerController::class,'updateStatusOrd
 Route::post('/pesquisaCPF',[ClientController::class,'findClient']);
 Route::post('/novoBanner',[BannerController::class,'create']);
 
-Route::get('/formBanner', function () {
-    return view('client.formBanner') ;
-});
 
-Route::get('/confirmarPagamento', function () {
-    return view('client.paymentProcess') ;
-});
+
+
+Route::get('/formBanner', function () {return view('client.formBanner') ;});
+
+Route::get('/confirmarPagamento', function () {return view('client.paymentProcess');});
 
 Route::get('/pagamento',[PaymentController::class,'payments']);
 
@@ -73,8 +72,11 @@ Route::post('/frete',[DeliveryRouteController::class,'portage']);
 
 
 
-Route::get('/prestador/registrar', function () {
-    return view('master.servicesRegistration') ;
+Route::get('/prestador/registrar', function () {return view('master.servicesRegistration');
 });
+
 Route::post('/validaCadastroPrestador',[ServicesController::class,'create']);
+
+Route::get('/prestador/visualizar',[ServicesController::class,'view'])->middleware('auth');
+
 

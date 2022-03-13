@@ -59,7 +59,7 @@ class OrderManagerController extends Controller
 
       return redirect()->back()->with('success', 'Não há nenhum novo pedido');
     } else {
-      return view('master.viewOrders', ['supplierOrder' => $supplierOrder]);
+      return view('master.orders.viewOrders', ['supplierOrder' => $supplierOrder]);
     }
   }
 
@@ -84,7 +84,7 @@ class OrderManagerController extends Controller
     }
 
 
-    return view('master.viewOrderDetail', ['productOrder' => $productOrder, 'deliveryOrder' => $deliveryOrder, 'idOrder' => $products['idOrder']]);
+    return view('master.orders.viewOrderDetail', ['productOrder' => $productOrder, 'deliveryOrder' => $deliveryOrder, 'idOrder' => $products['idOrder']]);
   }
 
   public function updateStatusOrder(Request $request)

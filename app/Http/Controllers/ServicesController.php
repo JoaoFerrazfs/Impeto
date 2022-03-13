@@ -11,6 +11,7 @@ class ServicesController extends Controller
 
         $services= new Services();
 
+        $services->user = auth()->user()->name; //User that register a new service
         $services->name = $request->name;
         $services->cod = $request->cod;
         $services->type = $request->type;
@@ -31,6 +32,16 @@ class ServicesController extends Controller
 
         return redirect('/dashboard')->with('success','O Prestador '.$request->name.' foi cadastrado com sucesso!');
 
-    }
+    };
+    
+}
+public function view(){
+    $user = auth()->user()->name;
+    $result = Services::where('user','admin')->get();    
+    
+   
+    
+    return view('master.services.viewServices',['results'=>$result]);
+  
 }
 }
