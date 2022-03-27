@@ -139,6 +139,8 @@ class BudgetController extends Controller
         // $idCliente = auth()->user()->id;
         $cart = $request->session()->get('cart');
 
+       
+
         $delivery = [
             "name" => $request->name,
             "phoneNumber" => $request->phoneNumber,
@@ -159,6 +161,8 @@ class BudgetController extends Controller
         $budget->products = $cart;
         $budget->note =  $request->note;
 
+        
+
         foreach ($cart as $key => $value) {
             $id = $value['id'];
             $inventory = $value['quantity'];
@@ -167,17 +171,17 @@ class BudgetController extends Controller
         }
 
 
-
+        
         $request->session()->put('budget', $budget);
-
-
+       
 
         $budget->save();
         //session()->forget('cart');
 
         $payment = new PaymentController();
+        
         $paymentLink = $payment->payments($cart);
-
+        
 
         return redirect($paymentLink);
         

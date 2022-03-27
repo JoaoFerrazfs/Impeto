@@ -30,15 +30,15 @@ class deliveryRouteController extends Controller
 
                 $this->setNull(); 
                 $distance = $response['routes'][0]['legs'][0]['distance']['text'];
-                $rate = 0; //taxa variavel do frete
+                $rate = 1; //taxa variavel do frete
                 $distance = floatval($distance);
-                $finalRate = 0 ; //$rate * $distance *  //valor do frete
+                $finalRate = 1 ; //$rate * $distance *  //valor do frete
                 $request->session()->put('portage', $finalRate);
                 return redirect()->back()->with('success', 'Valor do frete: R$ ' . $finalRate . '  Distancia: ' . $distance . ' km');
             } else {
                 $dataDelivery->getDataDelivery($request->address);
                 $distance = $response['routes'][0]['legs'][0]['distance']['text'];
-                $rate = 0; //taxa variavel do frete
+                $rate = 1; //taxa variavel do frete
                 $distance = floatval($distance);
                 $finalRate = $rate * $distance;
                 $request->session()->put('portage', $finalRate);

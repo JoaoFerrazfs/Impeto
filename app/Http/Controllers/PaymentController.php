@@ -15,7 +15,7 @@ class PaymentController extends Controller
     public function payments($cart)
     {
 
-
+       
         $access_token_development = "TEST-3030807514700823-032620-68626e53e3b7e1846a8ec0fc3d3ea953-274055464";
         $access_token_production = "APP_USR-2053630564340672-032620-a23e9b35b6e030a09cd390f20f7db69e-274055464";
         
@@ -59,7 +59,7 @@ class PaymentController extends Controller
 
         $preference->back_urls = array(
             "success" => "https://www.seu-site/success",
-            "failure" => "http://www.seu-site/failure",
+            "failure" => "http://127.0.0.1:8000/pedido",
             "pending" => "http://www.seu-site/pending"
         );
         $preference->auto_return = "approved";
@@ -71,7 +71,7 @@ class PaymentController extends Controller
 
       
 
-
+        
         return $link;
     }
 }
