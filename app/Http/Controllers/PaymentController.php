@@ -57,6 +57,15 @@ class PaymentController extends Controller
         $preference->items = $product;
 
 
+        $preference->back_urls = array(
+            "success" => "https://www.seu-site/success",
+            "failure" => "http://www.seu-site/failure",
+            "pending" => "http://www.seu-site/pending"
+        );
+        $preference->auto_return = "approved";
+        // ...
+
+
         $preference->save();
         $link = $preference->init_point;
 

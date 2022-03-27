@@ -10,14 +10,18 @@ class DeliveryDataController extends Controller
 {
     public function getDataDelivery($cep){
 
-        
+        $request = new Request();      
 
-        $link = "https://viacep.com.br/ws/".$cep."/json/";
+        
+        $link = "https://ws.apicep.com/cep/".$cep.".json";
+
+        
         $response = Http::get($link)->json();
-        Session()->put('cep',$response['cep']);
-        Session()->put('state',$response['uf']);
-        Session()->put('town',$response['localidade']);
-        Session()->put('street', $response['logradouro']);
+        Session()->put("cep",$response['code']);
+        Session()->put("state",$response['state']);
+        Session()->put("town",$response['city']);
+        Session()->put("street",$response['address']);  
+        
 
         return  ;       
     }

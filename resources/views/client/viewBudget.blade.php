@@ -52,22 +52,22 @@
               
                 <div class="input-group input-group-sm mb-3 mx-3 ">
                     <span class="input-group-text" id="inputGroup-sizing-sm">CEP</span>
-                    <input type="text" name="cep" class="form-control" value="{{  session()->get('cep') != null  ? session()->get('cep') : 'Digite seu CEP';  }}"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required>
+                    <input type="text" name="cep" class="form-control" value="{{  session()->get('cep') != null  ? session()->get('cep') : '';  }}"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required>
                 </div>
 
                 <div class="input-group input-group-sm mb-3 mx-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Estado</span>
-                    <input type="text" name="state" class="form-control" value="{{  session()->get('state') != null  ? session()->get('state') : 'Digite seu Estado';  }}"    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required>
+                    <input type="text" name="state" class="form-control" value="{{  session()->get('state') != null  ? session()->get('state') : '';  }}"    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required>
                 </div>
 
                 <div class="input-group input-group-sm mb-3 mx-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Cidade</span>
-                    <input type="text" name="city" class="form-control" value="{{  session()->get('town') != null  ? session()->get('town') : 'Digite sua Cidade';  }}"    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required>
+                    <input type="text" name="city" class="form-control" value="{{  session()->get('town') != null  ? session()->get('town') : '';  }}"    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required>
                 </div>
 
                 <div class="input-group input-group-sm mb-3 mx-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Rua</span>
-                    <input type="text" name="street" class="form-control" value="{{  session()->get('street') != null  ? session()->get('street') : 'Digite sua Rua';  }}"    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required>
+                    <input type="text" name="street" class="form-control" value="{{  session()->get('street') != null  ? session()->get('street') : '';  }}"    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required>
                 </div>
 
                 <div class="input-group input-group-sm mb-3 mx-3">
