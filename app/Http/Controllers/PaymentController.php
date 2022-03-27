@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 require_once '../vendor/autoload.php';
+
 use MercadoPago;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\MergeValue;
@@ -14,11 +15,13 @@ class PaymentController extends Controller
     public function payments($cart)
     {
 
-       
+
         $access_token_development = "TEST-3030807514700823-032620-68626e53e3b7e1846a8ec0fc3d3ea953-274055464";
-        $access_token_production = "APP_USR-2053630564340672-032620-a23e9b35b6e030a09cd390f20f7db69e-274055464"
-        ;
+        $access_token_production = "APP_USR-2053630564340672-032620-a23e9b35b6e030a09cd390f20f7db69e-274055464";
+        
         MercadoPago\SDK::setAccessToken($access_token_development);
+        $preference = new MercadoPago\Preference();
+
         $preference = new MercadoPago\Preference();
         $item = [];
         $frete = [];
@@ -54,16 +57,10 @@ class PaymentController extends Controller
         $preference->items = $product;
 
 
-        $preference->back_urls = array(
-            "success" => '/pagamentoConfirmado',
-            "failure" => 'http://127.0.0.1:8000/pedido',
-            "pending" => '/pagamentoPendente'
-        );
-
-        $preference->notification_url = '#';
-        $preference->external_reference = 001;
         $preference->save();
         $link = $preference->init_point;
+
+      
 
 
         return $link;
