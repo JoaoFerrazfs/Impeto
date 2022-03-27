@@ -32,7 +32,7 @@ class deliveryRouteController extends Controller
                 $distance = $response['routes'][0]['legs'][0]['distance']['text'];
                 $rate = 0.5;
                 $distance = floatval($distance);
-                $finalRate = $rate * $distance;
+                $finalRate = 0 ; //$rate * $distance * 
                 $request->session()->put('portage', $finalRate);
                 return redirect()->back()->with('success', 'Valor do frete: R$ ' . $finalRate . '  Distancia: ' . $distance . ' km');
             } else {
