@@ -69,11 +69,13 @@
                                                                 <td>{{$products['name']}}</td>
                                                                 <td>{{$products['price']}}</td>
                                                             </tr>
-
-                                                            
-
-                                                            
                                                         @endforeach
+
+                                                        <tr class="table-secondary">
+                                                            <td>Frete</td>
+                                                            <td></td>
+                                                            <td>{{$value['portage']}}</td>
+                                                        </tr>
 
 
 
@@ -87,7 +89,7 @@
                                                     <h6 class="">Valor Total: </h6>
                                                     <div class="me-5">
                                                         <h6 class="ms-3 position-absolute top-50 end-0 translate-middle-y">
-                                                            R$ {{$value['value']}}
+                                                            R$ {{$value['amount']}}
                                                             <i class="bi bi-cash ms-3 me-3 "></i>
                                                         </h6>
 
