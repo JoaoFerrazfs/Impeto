@@ -109,4 +109,15 @@ class OrderManagerController extends Controller
 
     return redirect('/pedidos/' . auth()->user()->supplier);
   }
+
+  public function searchOrder(Request $request){
+
+    $budget = new Budget();
+    $result = Budget::where('delivery.cpf','=',$request->cpf)->get();
+
+    return view('client.payments.payment',['result'=>$result]);
+
+
+
+  }
 }

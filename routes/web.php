@@ -80,7 +80,10 @@ Route::get('/prestador/visualizar',[ServicesController::class,'view'])->middlewa
 Route::get('/prestadores',[ServicesController::class,'viewAllServices']);
 
 
-Route::get('/teste', function () {return view('client.payments.payment') ;});
+Route::post('/frete',[DeliveryRouteController::class,'portage']);
+
+Route::get('/pesquisaPedido',[OrderManagerController::class,'searchOrder']);
+
 
 
 
