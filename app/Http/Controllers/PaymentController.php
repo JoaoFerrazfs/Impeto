@@ -60,7 +60,7 @@ class PaymentController extends Controller
         $preference->back_urls = array(
             "success" => "https://www.seu-site/success",
             "failure" => "http://127.0.0.1:8000/pedido",
-            "pending" => "http://www.seu-site/pending"
+            "pending" => "http://127.0.0.1:8000/"
         );
         $preference->auto_return = "approved";
         // ...

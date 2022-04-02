@@ -68,7 +68,7 @@
 
     </table>
 
-    <a href="/" class="btn btn-outline-light">Continuar Comprando</a>
+    <a href="/produtos" class="btn btn-outline-light">Continuar Comprando</a>
 
 
 

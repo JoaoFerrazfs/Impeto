@@ -68,13 +68,17 @@ class BudgetController extends Controller
         unset($cart[$key]);
         session()->forget('cart');
         session()->put('cart', $cart);
+        if(session()->put('cart', $cart) == null){
+            return redirect('/produtos');
+        }
+        
         return redirect()->back();
     }
 
     public function deleteCart(Request $request)
     {
         session()->forget('cart');
-        return redirect('/');
+        return redirect('/produtos');
     }
 
     public function updateQuantity(Request $request)
@@ -158,20 +162,10 @@ class BudgetController extends Controller
 
             $Product->changedStore($id, $inventory);
         }
-
-
-
         $request->session()->put('budget', $budget);
-
-
-        $budget->save();
-        //session()->forget('cart');
-
+        $budget->save(); 
         $payment = new PaymentController();
-
         $paymentLink = $payment->payments($cart);
-
-
         return redirect($paymentLink);
     }
 }

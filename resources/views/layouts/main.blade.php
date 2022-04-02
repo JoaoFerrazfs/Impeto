@@ -90,12 +90,12 @@
                     </div>
                 @endif
 
-                @auth
+                @if(session()->get('cart') != null)
                     <div class="">
                         <a href="/carrinho/visualizar" class="btn btn-outline-success">Carrinho <i
                                 class="bi bi-cart-check"></i> </a>
                     </div>
-                @endauth
+                @endif
 
                 <div class="mx-1">
                     <a type="button" href="/login" class="btn btn-success">Entre <i
