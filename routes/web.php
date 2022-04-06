@@ -32,7 +32,7 @@ require __DIR__ . '/auth.php';
 
 
 Route::get('/cadastroProduto', function () {
-    return view('master.productRegistration');
+    return view('master.products.productRegistration');
 });
 
 Route::post('/validaCadastro',[ProductController::class,'store'])->middleware('auth');
