@@ -36,7 +36,7 @@ class ProductController extends Controller
 
         $product->save();
 
-        return redirect('/dashboard')->with('success','Produto cadastrado com Sucesso');
+        return redirect('/dashboard')->with('msg','Produto cadastrado com Sucesso');
         // return  redirect('/');
     }
 

@@ -64,10 +64,10 @@
 
 
 
-              
+
 
                 <form method='GET' action='/pesquisaPedido' class="d-flex d-flex justify-content-end w-50 me-5  ">
-                    <input class="form-control me-2 w-75"  name='cpf' type="search" placeholder="Pesquise seu pedido"
+                    <input class="form-control me-2 w-75" name='cpf' type="search" placeholder="Pesquise seu pedido"
                         aria-label="Search">
                     <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i> </button>
                 </form>
@@ -90,7 +90,7 @@
                     </div>
                 @endif
 
-                @if(session()->get('cart') != null)
+                @if (session()->get('cart') != null)
                     <div class="">
                         <a href="/carrinho/visualizar" class="btn btn-outline-success">Carrinho <i
                                 class="bi bi-cart-check"></i> </a>
@@ -153,11 +153,17 @@
     </div>
     </div>
 
+    
 
 
-    <section class="content">
-        @yield('content')
-    </section>
+
+
+
+
+
+        <section class="content">
+            @yield('content')
+        </section>
 </body>
 
 

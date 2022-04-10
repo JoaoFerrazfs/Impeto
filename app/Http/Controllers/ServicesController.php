@@ -30,7 +30,7 @@ class ServicesController extends Controller
 
         $services->save();
 
-        return redirect('/dashboard')->with('success','O Prestador '.$request->name.' foi cadastrado com sucesso!');
+        return redirect('/dashboard')->with('msg','O Prestador '.$request->name.' foi cadastrado com sucesso!');
 
     };
     

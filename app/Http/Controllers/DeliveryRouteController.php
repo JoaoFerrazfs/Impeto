@@ -31,7 +31,7 @@ class deliveryRouteController extends Controller
                         $distance = floatval($distance);
                         $finalRate = $rate * $distance;
                         $request->session()->put('portage', $finalRate);
-                        return redirect()->back()->with('success', 'Valor do frete: R$ ' . $finalRate . '  Distancia: ' . $distance . ' km');
+                        return redirect()->back()->with('msg', 'Valor do frete: R$ ' . $finalRate . '  Distancia: ' . $distance . ' km');
                     break;
                     
                     default:
@@ -41,13 +41,13 @@ class deliveryRouteController extends Controller
                         $distance = floatval($distance);
                         $finalRate = 1 ; //$rate * $distance *  //valor do frete
                         $request->session()->put('portage', $finalRate);
-                        return redirect()->back()->with('success', 'Valor do frete: R$ ' . $finalRate . '  Distancia: ' . $distance . ' km'); 
+                        return redirect()->back()->with('msg', 'Valor do frete: R$ ' . $finalRate . '  Distancia: ' . $distance . ' km'); 
                     endswitch; 
             default:
                     $this->setNull();
                     $request->session()->put('portage', null);
                    
-                    return redirect()->back()->with('success', 'O endereço passado não foi encontrado ou não existe');
+                    return redirect()->back()->with('msg', 'O endereço passado não foi encontrado ou não existe');
         endswitch;     
       
     }
