@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Client;
-use GrahamCampbell\ResultType\Result;
+use Exception;
+use Illuminate\Http\Request;
 
 class ClientController extends Controller
-
 {
 
     public function findClient(Request $request)
@@ -17,7 +16,6 @@ class ClientController extends Controller
 
         $data = $client::where('cpf', $request->cpf)->get();
 
-     
     }
 
     public function find($cpf)
@@ -27,17 +25,16 @@ class ClientController extends Controller
         return $data;
     }
 
-
     public function store($data)
     {
 
         $cpf = $data['cpf'];
         $validate = $this->find($cpf);
 
+        try {
 
-
-        if ($validate == null) {
-
+            switch ($validate):
+        case null:
             $client = new Client();
             $client->name = $data['name'];
             $client->cpf = $data['cpf'];
@@ -48,8 +45,16 @@ class ClientController extends Controller
             $client->street = $data['street'];
             $client->number = $data['number'];
             $client->save();
-        } else {
-            //dump($this->find($data['cpf']));
-        }
+            break;
+        default:
+            throw new Exception("Erro ao cadastrar cliente");
+
+            endswitch;
+
+        } catch (Exception $e) {
+                dd($e->getMessage());
+        };
+
+       
     }
 }
