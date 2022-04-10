@@ -18,13 +18,7 @@ class deliveryRouteController extends Controller
         $endAddress = $request->address;
         $link = "https://maps.googleapis.com/maps/api/directions/json?avoid=highways&destination=" . $endAddress . "&mode=bicycling&origin=" . $startAddress . "&key=" . $APIKey;
         $response = Http::get($link)->json();
-
-        try{
-            throw new Exception('Erro de verificação de Rota');
-        }catch(Exception $e){
-                dd($e->getMessage());
-            };
-        
+       
 
 
         switch ($response['status']):
