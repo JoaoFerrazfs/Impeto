@@ -8,15 +8,10 @@ use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
-
+    
     public function findClient(Request $request)
-    {
-
-        $client = new Client();
-
-        $data = $client::where('cpf', $request->cpf)->get();
-
-    }
+    {       
+        $data = $this->client::where('cpf', $request->cpf)->get();    }
 
     public function find($cpf)
     {
@@ -30,6 +25,7 @@ class ClientController extends Controller
 
         $cpf = $data['cpf'];
         $validate = $this->find($cpf);
+      
 
         try {
 
@@ -47,12 +43,12 @@ class ClientController extends Controller
             $client->save();
             break;
         default:
-            throw new Exception("Erro ao cadastrar cliente");
+            throw new Exception("Clinte já cadastrado");
 
             endswitch;
 
         } catch (Exception $e) {
-                dd($e->getMessage());
+                $e->getMessage();
         };
 
        

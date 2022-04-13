@@ -10,6 +10,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\PdfController;
 use PDF;
 use App\Http\Controllers\PaymentController;
+use App\Models\Client;
 
 
 
@@ -18,6 +19,19 @@ use Illuminate\Http\Request;
 
 class BudgetController extends Controller
 {
+    /**
+     * @var Client
+     */
+    protected $client;
+
+    public function __construct()
+    {
+        $client = new Client();
+        
+        
+    }
+    
+
     public function makeShoppingList(Request $request)
     {
 
@@ -130,7 +144,7 @@ class BudgetController extends Controller
 
         $budget = new Budget();
         $Product = new ProductController;
-        $client = new ClientController();
+        $clientCadastro = new ClientController();
         $budgetNumber = Budget::all()->count() + 1;
         // $idCliente = auth()->user()->id;
         $cart = $request->session()->get('cart');
@@ -146,7 +160,9 @@ class BudgetController extends Controller
             "number" => $request->number
         ];
 
-        $client->store($delivery);
+      
+        
+        $clientCadastro->store($delivery);
 
         // $budget->idClient = $idCliente;
         $budget->number = $budgetNumber;
