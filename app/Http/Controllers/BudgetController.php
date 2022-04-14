@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use App\Models\User;
 use App\Models\Budget;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ClientController;
@@ -22,20 +21,29 @@ class BudgetController extends Controller
     /**
      * @var ClientController
      */
+    private $clientController;
 
      /**
      * @var ProductController
      */
-
-
-
-    private $clientController;
     private $productController;
 
-    public function __construct(ClientController $clientController,ProductController $productController)
+     /**
+     * @var Budget
+     */
+    private $budget;
+
+  
+    
+
+    public function __construct(
+        ClientController $clientController,
+        ProductController $productController,
+        Budget $budget)
     {
         $this->clientController = $clientController;
-        $this ->productController = $productController;       
+        $this->productController = $productController;
+        $this->budget = $budget;
         
     }
     
@@ -55,29 +63,22 @@ class BudgetController extends Controller
         $cartAdd['inventory'] = $request->inventory;
         $cartAdd['quantity'] = 1;
         $cartAdd['status'] = "Novo";
-
         $request->session()->push('cart', $cartAdd);
-
-
-
         return redirect('/carrinho/visualizar');
     }
 
     public function showShoppingList(Request $request)
     {
         $cart = $request->session()->get('cart');
-
         if ($cart == null) {
             return redirect()->back()->with('success', 'Você ainda não tem um carrinho!');
         } else {
             $quantity = 0;
             $amount = 0;
-
             foreach ($cart as $value) {
                 $quantity = $value["quantity"];
                 $amount =  $amount + ($quantity * $value["price"]);
             }
-
             return view('client.shoppingList', ['cart' => $cart, 'amount' => $amount]);
         }
     }
@@ -107,8 +108,6 @@ class BudgetController extends Controller
     {
         $key = $request->key;
         $cart = $request->session()->get('cart');
-
-
         $cart[$key]["quantity"] =  $request->amount;
         session()->forget('cart');
         session()->put('cart', $cart);
@@ -117,14 +116,9 @@ class BudgetController extends Controller
 
     public function newBudget(Request $request)
     {
-
-
-        $user = new User();
-
         $cart = $request->session()->get('cart');
         $quantity = 0;
         $amount = 0;
-
         foreach ($cart as $value) {
             $quantity = $value["quantity"];
             $amount =  $amount + ($quantity * $value["price"]);
@@ -133,26 +127,21 @@ class BudgetController extends Controller
 
 
         $cartData = [
-            "cart" => $cart,
+                        "cart" => $cart,
             "amount" => $amount
         ];
-
         $request->session()->put('cartAmout', $amount);
-
-
         return view('client.viewBudget', [
             'amount' => $amount,
             'cart' => $cart,
-            // 'userData' => $userData
+     
         ]);
     }
 
     public function saveBudget(Request $request)
     {
-
-        $budget = new Budget();           
-        $budgetNumber = Budget::all()->count() + 1;
-        // $idCliente = auth()->user()->id;
+           
+        $budgetNumber = Budget::all()->count() + 1;        
         $cart = $request->session()->get('cart');
 
         $delivery = [
@@ -169,15 +158,14 @@ class BudgetController extends Controller
       
         
         $this->clientController->store($delivery);
-
-        // $budget->idClient = $idCliente;
-        $budget->number = $budgetNumber;
-        $budget->statusPayment = 'Em espera';
-        $budget->delivery = $delivery;
-        $budget->products = $cart;
-        $budget->note =  $request->note;
-        $budget->portage =  $request->session()->get('portage');
-        $budget->amount =  $request->session()->get('cartAmout') + $request->session()->get('portage');
+       
+        $this->budget->number = $budgetNumber;
+        $this->budget->statusPayment = 'Em espera';
+        $this->budget->delivery = $delivery;
+        $this->budget->products = $cart;
+        $this->budget->note =  $request->note;
+        $this->budget->portage =  $request->session()->get('portage');
+        $this->budget->amount =  $request->session()->get('cartAmout') + $request->session()->get('portage');
         foreach ($cart as $key => $value) {
             $id = $value['id'];
             $inventory = $value['quantity'];
@@ -185,7 +173,7 @@ class BudgetController extends Controller
             $this->productController->changedStore($id, $inventory);
         }
         $request->session()->put('budget', $budget);
-        $budget->save(); 
+        $this->budget->save(); 
         $payment = new PaymentController();
         $paymentLink = $payment->payments($cart);
         return redirect($paymentLink);
