@@ -3,22 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Models\Banner;
-
 use Illuminate\Http\Request;
 
 class BannerController extends Controller
 {
-    public function create(Request $request)
+    /**
+     * @var Banner
+     */
+    private $banner;
+
+    public function __construct(Banner $banner)
     {
+        $this->banner = $banner;
+        
+    }
 
-        $banner = new Banner();
+    public function create(Request $request)
+    {       
 
-        $banner->name = $request['name'];
-        $banner->phoneNumber =  $request['phoneNumber'];
-        $banner->email = $request['email'];
-        $banner->company = $request['company'];
-        $banner->localization = $request['localization'];        
-        $banner->showTime = $request['showTime'];
+        $this->banner->name = $request['name'];
+        $this->banner->phoneNumber =  $request['phoneNumber'];
+        $this->banner->email = $request['email'];
+        $this->banner->company = $request['company'];
+        $this->banner->localization = $request['localization'];        
+        $this->banner->showTime = $request['showTime'];
 
 
 
@@ -36,11 +44,11 @@ class BannerController extends Controller
             $request->image = $imageName;
         }
 
-        $banner->image =$request->image;
+        $this->banner->image =$request->image;
 
       
 
-        $banner->save();
+        $this->banner->save();
 
         return redirect("/")->with('', 'Seu Pedido foi realizado! Logo entraremos em contato! ');
 }
