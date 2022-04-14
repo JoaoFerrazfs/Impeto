@@ -17,14 +17,11 @@ class ProductController extends Controller
       * @var MovementHistoryController
       */
     private $movementHistory;
-
+    
     /**
       * @var Product
       */
-    private $product;
-
-
-  
+    private $product;  
     
     public function __construct(MovementHistoryController $movementHistory, Product $product)
     {

@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class MovementHistoryController extends Controller
 {
+    /**
+     * @var MovomentHistory
+     */
+    private $movementHistory;
+    public function __construct(MovementHistory $movementHistory)
+    {
+        $this->movementHistory = $movementHistory;
+    }
     public function productHistory($data)
     {
 
