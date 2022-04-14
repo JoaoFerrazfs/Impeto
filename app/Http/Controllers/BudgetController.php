@@ -20,14 +20,22 @@ use Illuminate\Http\Request;
 class BudgetController extends Controller
 {
     /**
-     * @var Client
+     * @var ClientController
      */
-    protected $client;
 
-    public function __construct()
+     /**
+     * @var ProductController
+     */
+
+
+
+    private $clientController;
+    private $productController;
+
+    public function __construct(ClientController $clientController,ProductController $productController)
     {
-        $client = new Client();
-        
+        $this->clientController = $clientController;
+        $this ->productController = $productController;       
         
     }
     
@@ -142,9 +150,7 @@ class BudgetController extends Controller
     public function saveBudget(Request $request)
     {
 
-        $budget = new Budget();
-        $Product = new ProductController;
-        $clientCadastro = new ClientController();
+        $budget = new Budget();           
         $budgetNumber = Budget::all()->count() + 1;
         // $idCliente = auth()->user()->id;
         $cart = $request->session()->get('cart');
@@ -162,7 +168,7 @@ class BudgetController extends Controller
 
       
         
-        $clientCadastro->store($delivery);
+        $this->clientController->store($delivery);
 
         // $budget->idClient = $idCliente;
         $budget->number = $budgetNumber;
@@ -176,7 +182,7 @@ class BudgetController extends Controller
             $id = $value['id'];
             $inventory = $value['quantity'];
 
-            $Product->changedStore($id, $inventory);
+            $this->productController->changedStore($id, $inventory);
         }
         $request->session()->put('budget', $budget);
         $budget->save(); 
