@@ -33,17 +33,24 @@ class BudgetController extends Controller
      */
     private $budget;
 
+         /**
+     * @var PaymentController
+     */
+    private $paymentController;
+
   
     
 
     public function __construct(
         ClientController $clientController,
         ProductController $productController,
-        Budget $budget)
+        Budget $budget,
+        PaymentController $paymentController)
     {
         $this->clientController = $clientController;
         $this->productController = $productController;
         $this->budget = $budget;
+        $this->paymentController = $paymentController;
         
     }
     
@@ -172,10 +179,9 @@ class BudgetController extends Controller
 
             $this->productController->changedStore($id, $inventory);
         }
-        $request->session()->put('budget', $budget);
-        $this->budget->save(); 
-        $payment = new PaymentController();
-        $paymentLink = $payment->payments($cart);
+        $request->session()->put('budget',  $this->budget);
+        $this->budget->save();        
+        $paymentLink =  $this->paymentController->payments($cart);
         return redirect($paymentLink);
     }
 }
