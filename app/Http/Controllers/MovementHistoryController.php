@@ -18,16 +18,15 @@ class MovementHistoryController extends Controller
     public function productHistory($data)
     {
 
-        $history= new MovementHistory();
+       
      
-        $history->cod=$data->cod;
-        $history->name = $data->name;
-        $history->supplier = $data->supplier;
-        $history->description=$data->description;
-        $history->price=$data->price;
-        $history->inventory=$data->inventory;
-        $history->user=$data->user;
-
-        $history->save();
+        $this->movementHistory->cod=$data->cod;
+        $this->movementHistory->name = $data->name;
+        $this->movementHistory->supplier = $data->supplier;
+        $this->movementHistory->description=$data->description;
+        $this->movementHistory->price=$data->price;
+        $this->movementHistory->inventory=$data->inventory;
+        $this->movementHistory->user=$data->user;
+        $this->movementHistory->save();
     }
 }
