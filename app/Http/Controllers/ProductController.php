@@ -14,27 +14,48 @@ use App\Http\Controllers;
 
 class ProductController extends Controller
 {
+   /**
+     * @var MovementHistoryController
+     */
+   private $movementHistory;
+
+   /**
+     * @var Product
+     */
+    private $product;
+
+
+  
+    
+    public function __construct(MovementHistoryController $movementHistory,Product $product)
+    {
+
+        
+        $this->movementHistory = $movementHistory;
+        $this->product =$product;
+       
+    }
+
     public function store(Request $request)
     {
 
 
 
-        $request = $this->data($request);
-        $product =  new Product;
-        $product->name =  $request->name;
-        $product->cod =  $request->cod;
-        $product->supplier =  $request->supplier;
-        $product->description =  $request->description;
-        $product->price =  $request->price;
-        $product->image =  $request->image;
-        $product->availability =  $request->availability;
-        $product->order =  $request->order;
-        $product->type =  $request->type;
-        $product->inventory =  $request->inventory;
+        $request = $this->data($request);        
+        $this->product->name =  $request->name;
+        $this->product->cod =  $request->cod;
+        $this->product->supplier =  $request->supplier;
+        $this->product->description =  $request->description;
+        $this->product->price =  $request->price;
+        $this->product->image =  $request->image;
+        $this->product->availability =  $request->availability;
+        $this->product->order =  $request->order;
+        $this->product->type =  $request->type;
+        $this->product->inventory =  $request->inventory;
 
-        $product->user = auth()->user()->_id;
+        $this->product->user = auth()->user()->_id;
 
-        $product->save();
+        $this->product->save();
 
         return redirect('/dashboard')->with('msg','Produto cadastrado com Sucesso');
         // return  redirect('/');
@@ -77,14 +98,15 @@ class ProductController extends Controller
 
     public function myProducts($user)
     {
-        $products = Product::where('user', '=', $user)->get();
+        $products = $this->product->where('user', '=', $user)->get();
+
 
         return view('master.products.viewMyProducts', ['products' => $products]);
     }
 
     public function editProducts($id)
     {
-        $products = Product::where('_id', '=', $id)->get();
+        $products = $this->product->where('_id', '=', $id)->get();
 
         return view('master.products.viewProduct', ['products' => $products]);
     }
@@ -92,8 +114,6 @@ class ProductController extends Controller
     public function update(Request $request)
     {
 
-        $product = new Product();
-        $history = new MovementHistoryController();
         $dataHistory = Product::find($request["id"]);
         $requestHandled = $this->data($request);
 
@@ -110,7 +130,11 @@ class ProductController extends Controller
         }
 
         if ($request->price != $dataHistory->price || $request->inventory != $dataHistory->inventory) {
-            $history->productHistory($dataHistory);
+            $teste= new MovementHistory;
+
+            
+          
+            $this->movementHistory->productHistory($dataHistory);
 
             $data = [
                 "cod" => $requestHandled['cod'],
@@ -139,18 +163,16 @@ class ProductController extends Controller
         }
 
         $user = auth()->user()->_id;
-        Product::find($request['id'])->update($data);
+        $this->product->find($request['id'])->update($data);
 
         return redirect('/meusProdutos/' . $user);
     }
 
     public function changeState(Request $request)
     {
-        $product = new Product();
-
         $requestArray = $request->all();
 
-        $data = Product::find($request['id']);
+        $data = $this->product->find($request['id']);
 
 
 
@@ -160,19 +182,19 @@ class ProductController extends Controller
             if ($data["order"] == "Pronta Entrega") {
                 $data = ["order" => "Encomenda"];
 
-                Product::find($request['id'])->update($data);
+                $this->product->find($request['id'])->update($data);
             } else {
                 $data = ["order" => "Pronta Entrega"];
-                Product::find($request['id'])->update($data);
+                $this->product->find($request['id'])->update($data);
             }
         } else {
 
             if ($data["availability"] == "Disponível") {
                 $data = ["availability" => "Indisponivel"];
-                Product::find($request['id'])->update($data);
+                $this->product->find($request['id'])->update($data);
             } else {
                 $data = ["availability" => "Disponível"];
-                Product::find($request['id'])->update($data);
+                $this->product->find($request['id'])->update($data);
             }
         }
 
@@ -182,19 +204,18 @@ class ProductController extends Controller
 
     public function destroy($id)
     {
-        $product = new Product();
+       
 
 
 
-        Product::where('_id', $id)->delete();
+        $this->product->where('_id', $id)->delete();
         $user = auth()->user()->_id;
         return redirect('/meusProdutos/' . $user);
     }
 
     public function index()
     {
-        $product = new Product();
-        $products = Product::where('availability', 'Disponível')->get();
+        $products =$this->product->where('availability', 'Disponível')->get();
         return view('client.products.products', ['products' => $products]);
     }
     public function viewProduct(Request $request)
@@ -202,7 +223,7 @@ class ProductController extends Controller
 
         $product = new Product();
         $request = $request->all();
-        $products = Product::find($request["id"]);
+        $products = $this->product->find($request["id"]);
 
         if ($products->availability != "Disponível") {
             return redirect('/');
@@ -217,7 +238,7 @@ class ProductController extends Controller
 
         $newInventory = 0;
 
-        $product = Product::where('_id', $id)->get();
+        $product = $this->product->where('_id', $id)->get();
 
         foreach ($product as $key => $value) {
             $newInventory = $value->inventory - $quantity;
@@ -225,6 +246,6 @@ class ProductController extends Controller
 
 
         $inventory = ['inventory' => $newInventory];
-        $product = Product::where('_id', $id)->update($inventory);
+        $product =$this->product->where('_id', $id)->update($inventory);
     }
 }
