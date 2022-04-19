@@ -50,6 +50,7 @@ class ProductController extends Controller
 
     public function data($request)
     {
+        
         /*data type validation*/
         $request["price"] = floatval($request["price"]);
         $request["inventory"] = intval($request["inventory"]);
@@ -80,6 +81,7 @@ class ProductController extends Controller
 
     public function myProducts($user)
     {
+        dd($_SERVER);
         $products = $this->product->where('user', '=', $user)->get();
         return view('master.products.viewMyProducts', ['products' => $products]);
     }
