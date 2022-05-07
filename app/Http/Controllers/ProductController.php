@@ -11,18 +11,19 @@ use App\Http\Controllers\MovementHistoryController;
 use App\Models\MovementHistory;
 use App\Http\Controllers;
 
+
 class ProductController extends Controller
 {
     /**
       * @var MovementHistoryController
       */
     private $movementHistory;
-    
+
     /**
       * @var Product
       */
-    private $product;  
-    
+    private $product;
+
     public function __construct(MovementHistoryController $movementHistory, Product $product)
     {
         $this->movementHistory = $movementHistory;
@@ -50,7 +51,7 @@ class ProductController extends Controller
 
     public function data($request)
     {
-        
+
         /*data type validation*/
         $request["price"] = floatval($request["price"]);
         $request["inventory"] = intval($request["inventory"]);

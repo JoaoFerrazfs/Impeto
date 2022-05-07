@@ -153,7 +153,7 @@
     </div>
     </div>
 
-    
+
 
 
 
@@ -166,7 +166,9 @@
         </section>
 </body>
 
-
+<footer>
+    @yield('footer')
+</footer>
 
 
 </html>
