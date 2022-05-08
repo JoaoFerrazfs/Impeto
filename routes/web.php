@@ -43,7 +43,7 @@ Route::post('/meusProdutos/status',[ProductController::class,'changeState'])->mi
 Route::delete('/meusProdutos/delete/{id}',[ProductController::class,'destroy'])->middleware('auth');
 Route::get('/produtos',[ProductController::class,'index']);
 Route::post('/visualizarProduto',[ProductController::class,'viewProduct']);
-Route::post('/carrinho',[BudgetController::class,'makeShoppingList']);    
+Route::post('/carrinho',[BudgetController::class,'makeShoppingList']);
 Route::get('/carrinho/visualizar',[BudgetController::class,'showShoppingList']);
 Route::post('/carrinho/excluir/item',[BudgetController::class,'deleteItemShoppingList']);
 Route::post('/carrinho/excluir/carrinho',[BudgetController::class,'deleteCart']);
@@ -68,7 +68,7 @@ Route::get('/pagamento',[PaymentController::class,'payments']);
 
 Route::get('/geraPdf',[PdfController::class,'createPdf']);
 
-Route::post('/frete',[DeliveryRouteController::class,'portage']);
+Route::post('/frete',[DeliveryRouteController::class,'getCEP']);
 
 
 
@@ -80,7 +80,7 @@ Route::get('/prestador/visualizar',[ServicesController::class,'view'])->middlewa
 Route::get('/prestadores',[ServicesController::class,'viewAllServices']);
 
 
-Route::post('/frete',[DeliveryRouteController::class,'portage']);
+
 
 Route::get('/pesquisaPedido',[OrderManagerController::class,'searchOrder']);
 

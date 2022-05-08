@@ -6,50 +6,55 @@ use App\Http\Controllers\DeliveryDataController;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
+use  App\Http\Api\GoogleApis;
 
-class deliveryRouteController extends Controller
+
+class DeliveryRouteController extends Controller
 {
+    private $googleApis;
 
-    public function portage(Request $request) /*set route value*/
+    public function __construct(GoogleApis $googleApis)
+    {
+        $this->googleApis= $googleApis;
+    }
+    public function getCEP(Request $request)
+    {
+        $cep = $request->address;
+        $msg = $this->portage($cep);
+        return redirect()->back();
+    }
+
+    public function portage($cep) /*set route value*/
     {
         $dataDelivery = new DeliveryDataController();
-        $APIKey = "AIzaSyBwJOgp3_liIwXVbEO6Yk0QRekYvQgOM-o";
-        $startAddress = "32210-180";
-        $endAddress = $request->address;
-        $link = "https://maps.googleapis.com/maps/api/directions/json?avoid=highways&destination=" . $endAddress . "&mode=bicycling&origin=" . $startAddress . "&key=" . $APIKey;
-        $response = Http::get($link)->json();
-       
-
+        $response = $this->googleApis->requestDirections($cep);
 
         switch ($response['status']):
             case 'OK':
                 switch($response['geocoded_waypoints'][1]['types'][0]):
                     case 'postal_code':
-                        $dataDelivery->getDataDelivery($request->address);
+                        $dataDelivery->getDataDelivery($cep);
                         $distance = $response['routes'][0]['legs'][0]['distance']['text'];
                         $rate = 1; //taxa variavel do frete
                         $distance = floatval($distance);
                         $finalRate = $rate * $distance;
-                        $request->session()->put('portage', $finalRate);
-                        return redirect()->back()->with('msg', 'Valor do frete: R$ ' . $finalRate . '  Distancia: ' . $distance . ' km');
+                        session()->put('portage', $finalRate);
+
+                        return $status =['succes'=>'200'];
                     break;
-                    
+
                     default:
-                        $this->setNull(); 
-                        $distance = $response['routes'][0]['legs'][0]['distance']['text'];
-                        $rate = 1; //taxa variavel do frete
-                        $distance = floatval($distance);
-                        $finalRate = 1 ; //$rate * $distance *  //valor do frete
-                        $request->session()->put('portage', $finalRate);
-                        return redirect()->back()->with('msg', 'Valor do frete: R$ ' . $finalRate . '  Distancia: ' . $distance . ' km'); 
-                    endswitch; 
+                        $this->setNull();
+                        return ['success'=>'200'];
+
+                    endswitch;
             default:
                     $this->setNull();
-                    $request->session()->put('portage', null);
-                   
-                    return redirect()->back()->with('msg', 'O endereço passado não foi encontrado ou não existe');
-        endswitch;     
-      
+                    session()->put('portage', "CEP errado");
+
+                return ['error'=>'400'];
+        endswitch;
+
     }
 
     public function setNull(){
