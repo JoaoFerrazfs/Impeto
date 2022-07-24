@@ -12,10 +12,9 @@ class OrderManagerController extends Controller
     public function manager($supplier)
     {
 
-        $delivery = [];
         $updated_at = "";
         $orders = Budget::all();
-        
+
         foreach ($orders as $key => $firtValue) {
 
             $delivery = $firtValue['delivery'];
@@ -52,17 +51,17 @@ class OrderManagerController extends Controller
 
         $supplierOrder = array_filter($supplierOrder);
 
-        
+
 
         switch ($supplierOrder):
           case "null";
             return redirect()->back()->with('msg', 'Não há nenhum novo pedido');
-          break;            
+          break;
           default:
             return view('master.orders.viewOrders', ['supplierOrder' => $supplierOrder]);
         endswitch;
 
-        
+
     }
 
     public function showOrder(Request $request)
@@ -112,7 +111,6 @@ class OrderManagerController extends Controller
     public function searchOrder(Request $request)
     {
 
-        $budget = new Budget();
         $result = Budget::where('delivery.cpf', '=', $request->cpf)->get();
 
         return view('client.payments.payment', ['result' => $result]);
