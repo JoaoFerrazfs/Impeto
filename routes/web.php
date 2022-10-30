@@ -38,12 +38,14 @@ Route::get('/cadastroProduto', function () {
 Route::post('/validaCadastro',[ProductController::class,'store'])->middleware('auth');
 Route::get('/meusProdutos/{id}',[ProductController::class,'myProducts'])->middleware('auth');
 Route::get('/meusProdutos/editarProdutos/{id}',[ProductController::class,'editProducts'])->middleware('auth');
+Route::get('/meusProdutos/editarProdutos/{id}',[ProductController::class,'editProducts'])->middleware('auth');
 Route::post('/meusProdutos/salvaEdicao',[ProductController::class,'update'])->middleware('auth');
-Route::post('/meusProdutos/status',[ProductController::class,'changeState'])->middleware('auth');
+Route::post('/meusProdutos/order',[ProductController::class,'changeOrder'])->middleware('auth');
+Route::post('/meusProdutos/availability',[ProductController::class,'changeAvailability'])->middleware('auth');
 Route::delete('/meusProdutos/delete/{id}',[ProductController::class,'destroy'])->middleware('auth');
 Route::get('/produtos',[ProductController::class,'index']);
 Route::post('/visualizarProduto',[ProductController::class,'viewProduct']);
-Route::post('/carrinho',[BudgetController::class,'makeShoppingList']);    
+Route::post('/carrinho',[BudgetController::class,'makeShoppingList']);
 Route::get('/carrinho/visualizar',[BudgetController::class,'showShoppingList']);
 Route::post('/carrinho/excluir/item',[BudgetController::class,'deleteItemShoppingList']);
 Route::post('/carrinho/excluir/carrinho',[BudgetController::class,'deleteCart']);

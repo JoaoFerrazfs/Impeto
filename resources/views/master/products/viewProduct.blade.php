@@ -24,7 +24,7 @@
             <div class="input-group mb-3">
                 <span class="input-group-text " id="basic-addon1">Fornecedor</span>
                 <input type="text" class="form-control" value="{{$product->supplier}}" name="supplier" id="supplier" required="required"  >
-                
+
             </div>
 
             <div class="input-group mb-3">
@@ -63,34 +63,34 @@
         <img src="/img/products/{{$product->image}}" class="img-fluid " alt="{{$product->name}}">
     </div>
 
-    <form method="POST" action="/meusProdutos/status" enctype="multipart/form-data">
+    <form method="POST" action="/meusProdutos/availability" enctype="multipart/form-data">
         @csrf
         @if ( $product->availability == "Disponível")
         <div class="form-check form-switch">
-            <input type="hidden" name="availability" class="form-control" value="Indísponivel" id="availability">
+            <input type="hidden" name="availability" class="form-control" value="Disponível" id="availability">
             <input type="hidden" name="id" class="form-control" value="{{$product->id}}" id="name" required="required">
             <button type="submit" class="btn btn-outline-warning">Desativar produto</button>
         </div>
         @else
         <div class="form-check form-switch">
-            <input type="hidden" name="availability" class="form-control" value="Dísponivel" id="availability">
+            <input type="hidden" name="availability" class="form-control" value="Indisponivel" id="availability">
             <input type="hidden" name="id" class="form-control" value="{{$product->id}}" id="name" required="required">
             <button type="submit" class="btn btn-outline-warning">Ativar produto</button>
         </div>
         @endif
     </form>
-    <form method="POST" action="/meusProdutos/status" enctype="multipart/form-data">
+    <form method="POST" action="/meusProdutos/order" enctype="multipart/form-data">
         @csrf
         @if ( $product->order == "Pronta Entrega")
         <div class="form-check form-switch">
-            <input type="hidden" name="order" class="form-control" value="Encomenda" id="order">
+            <input type="hidden" name="order" class="form-control" value="false" id="order">
             <input type="hidden" name="id" class="form-control" value="{{$product->id}}" id="name" required="required">
             <button type="submit" class="btn btn-outline-warning">Mudar para encomenda</button>
 
         </div>
         @else
         <div class="form-check form-switch">
-            <input type="hidden" name="order" class="form-control" value="Pronta Entrega" id="order">
+            <input type="hidden" name="order" class="form-control" value=true id="order">
             <input type="hidden" name="id" class="form-control" value="{{$product->id}}" id="name" required="required">
             <button type="submit" class="btn btn-outline-warning">Mudar para Pronta Entrega</button>
 

@@ -30,12 +30,12 @@
         </div>
 
         <div class="form-check form-switch">
-            <input class="form-check-input" value="null" type="checkbox" role="switch" name="availability" id="availability">
+            <input class="form-check-input" value="Indísponivel" type="checkbox" role="switch" name="availability" id="availability">
             <label class="form-check-label" for="availability">Disponivel</label>
         </div>
 
         <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" value="null" role="switch" name="order" id="order">
+            <input class="form-check-input" type="checkbox" value="Pronta Entrega" role="switch" name="order" id="order">
             <label class="form-check-label" for="order">Somente Encomenda</label>
         </div>
 
