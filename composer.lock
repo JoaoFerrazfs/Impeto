@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cfaa80c2cf138a3487611b8849f9497c",
+    "content-hash": "57d2a6633880e707880be4d9ae7339e7",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2308,16 +2308,16 @@
         },
         {
             "name": "mercadopago/dx-php",
-            "version": "2.4.5",
+            "version": "2.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mercadopago/sdk-php.git",
-                "reference": "f10f278386baf7bf055681c67a95eeafc217d180"
+                "reference": "9fd5d8842988cdad026a5722696d0784625201ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mercadopago/sdk-php/zipball/f10f278386baf7bf055681c67a95eeafc217d180",
-                "reference": "f10f278386baf7bf055681c67a95eeafc217d180",
+                "url": "https://api.github.com/repos/mercadopago/sdk-php/zipball/9fd5d8842988cdad026a5722696d0784625201ea",
+                "reference": "9fd5d8842988cdad026a5722696d0784625201ea",
                 "shasum": ""
             },
             "require": {
@@ -2327,11 +2327,10 @@
             },
             "require-dev": {
                 "doctrine/orm": "~2.3",
-                "phpdocumentor/phpdocumentor": "^2.0",
                 "phpmd/phpmd": "@stable",
-                "phpunit/phpunit": "^5",
+                "phpunit/phpunit": "^7",
                 "sebastian/phpcpd": "*",
-                "squizlabs/php_codesniffer": "2.3.*",
+                "squizlabs/php_codesniffer": "2.8.1",
                 "symfony/yaml": "~2.5",
                 "vlucas/phpdotenv": "^2.5"
             },
@@ -2354,9 +2353,9 @@
             "description": "Mercado Pago PHP SDK",
             "homepage": "https://github.com/mercadopago/sdk-php",
             "support": {
-                "source": "https://github.com/mercadopago/sdk-php/tree/2.4.5"
+                "source": "https://github.com/mercadopago/sdk-php/tree/2.5.1"
             },
-            "time": "2022-01-24T18:22:34+00:00"
+            "time": "2022-09-27T19:06:00+00:00"
         },
         {
             "name": "mongodb/mongodb",
