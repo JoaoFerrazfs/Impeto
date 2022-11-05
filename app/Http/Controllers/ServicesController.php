@@ -30,17 +30,17 @@ class ServicesController extends Controller
         return redirect('/dashboard')->with('msg', 'O Prestador ' . $request['name'] . ' foi cadastrado com sucesso!');
     }
 
-public function view(): View
-{
-    $result = Services::where('user','admin')->get();
+    public function view(): View
+    {
+        $result = Services::where('user', 'admin')->get();
 
-    return view('master.services.viewServices',['results'=>$result]);
-}
+        return view('master.services.viewServices', ['results'=>$result]);
+    }
 
-public function viewAllServices(): View
-{
-    return view('client.services.services',['results'=> Services::all()]);
-}
+    public function viewAllServices(): View
+    {
+        return view('client.services.services', ['results'=> Services::all()]);
+    }
 
 
 }

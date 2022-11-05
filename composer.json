@@ -13,7 +13,8 @@
         "laravel/framework": "^8.65",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.6",
-        "mercadopago/dx-php": "2.*"
+        "mercadopago/dx-php": "2.*",
+        "phpmd/phpmd": "^2.13"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

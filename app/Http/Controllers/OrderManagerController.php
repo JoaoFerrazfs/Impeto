@@ -55,10 +55,10 @@ class OrderManagerController extends Controller
         
 
         switch ($supplierOrder):
-          case "null";
+        case "null";
             return redirect()->back()->with('msg', 'Não há nenhum novo pedido');
           break;            
-          default:
+        default:
             return view('master.orders.viewOrders', ['supplierOrder' => $supplierOrder]);
         endswitch;
 

@@ -11,7 +11,8 @@ class ClientController extends Controller
     
     public function findClient(Request $request)
     {       
-        $data = $this->client::where('cpf', $request->cpf)->get();    }
+        $data = $this->client::where('cpf', $request->cpf)->get();    
+    }
 
     public function find($cpf)
     {
@@ -30,20 +31,20 @@ class ClientController extends Controller
         try {
 
             switch ($validate):
-        case null:
-            $client = new Client();
-            $client->name = $data['name'];
-            $client->cpf = $data['cpf'];
-            $client->phoneNumber = $data['phoneNumber'];
-            $client->cep = $data['cep'];
-            $client->state = $data['state'];
-            $client->city = $data['city'];
-            $client->street = $data['street'];
-            $client->number = $data['number'];
-            $client->save();
-            break;
-        default:
-            throw new Exception("Clinte já cadastrado");
+            case null:
+                $client = new Client();
+                $client->name = $data['name'];
+                $client->cpf = $data['cpf'];
+                $client->phoneNumber = $data['phoneNumber'];
+                $client->cep = $data['cep'];
+                $client->state = $data['state'];
+                $client->city = $data['city'];
+                $client->street = $data['street'];
+                $client->number = $data['number'];
+                $client->save();
+                break;
+            default:
+                throw new Exception("Clinte já cadastrado");
 
             endswitch;
 

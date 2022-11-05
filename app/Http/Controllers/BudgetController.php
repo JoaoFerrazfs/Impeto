@@ -24,18 +24,18 @@ class BudgetController extends Controller
     private $clientController;
 
      /**
-     * @var ProductController
-     */
+      * @var ProductController
+      */
     private $productController;
 
      /**
-     * @var Budget
-     */
+      * @var Budget
+      */
     private $budget;
 
          /**
-     * @var PaymentController
-     */
+          * @var PaymentController
+          */
     private $paymentController;
 
   
@@ -45,8 +45,8 @@ class BudgetController extends Controller
         ClientController $clientController,
         ProductController $productController,
         Budget $budget,
-        PaymentController $paymentController)
-    {
+        PaymentController $paymentController
+    ) {
         $this->clientController = $clientController;
         $this->productController = $productController;
         $this->budget = $budget;
@@ -98,7 +98,7 @@ class BudgetController extends Controller
         unset($cart[$key]);
         session()->forget('cart');
         session()->put('cart', $cart);
-        if(session()->put('cart', $cart) == null){
+        if(session()->put('cart', $cart) == null) {
             return redirect('/produtos');
         }
         
@@ -138,11 +138,13 @@ class BudgetController extends Controller
             "amount" => $amount
         ];
         $request->session()->put('cartAmout', $amount);
-        return view('client.viewBudget', [
+        return view(
+            'client.viewBudget', [
             'amount' => $amount,
             'cart' => $cart,
      
-        ]);
+            ]
+        );
     }
 
     public function saveBudget(Request $request)

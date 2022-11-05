@@ -12,7 +12,7 @@ class Product extends Model
 
     public function isOrder(): bool
     {
-       return $this->order == "Encomenda" ;
+        return $this->order == "Encomenda" ;
     }
 
     public function isAvailable(): bool

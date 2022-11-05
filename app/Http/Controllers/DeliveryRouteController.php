@@ -22,37 +22,38 @@ class deliveryRouteController extends Controller
 
 
         switch ($response['status']):
-            case 'OK':
-                switch($response['geocoded_waypoints'][1]['types'][0]):
-                    case 'postal_code':
-                        $dataDelivery->getDataDelivery($request->address);
-                        $distance = $response['routes'][0]['legs'][0]['distance']['text'];
-                        $rate = 1; //taxa variavel do frete
-                        $distance = floatval($distance);
-                        $finalRate = $rate * $distance;
-                        $request->session()->put('portage', $finalRate);
-                        return redirect()->back()->with('msg', 'Valor do frete: R$ ' . $finalRate . '  Distancia: ' . $distance . ' km');
-                    break;
+        case 'OK':
+            switch($response['geocoded_waypoints'][1]['types'][0]):
+            case 'postal_code':
+                $dataDelivery->getDataDelivery($request->address);
+                $distance = $response['routes'][0]['legs'][0]['distance']['text'];
+                $rate = 1; //taxa variavel do frete
+                $distance = floatval($distance);
+                $finalRate = $rate * $distance;
+                $request->session()->put('portage', $finalRate);
+                return redirect()->back()->with('msg', 'Valor do frete: R$ ' . $finalRate . '  Distancia: ' . $distance . ' km');
+                break;
                     
-                    default:
-                        $this->setNull(); 
-                        $distance = $response['routes'][0]['legs'][0]['distance']['text'];
-                        $rate = 1; //taxa variavel do frete
-                        $distance = floatval($distance);
-                        $finalRate = 1 ; //$rate * $distance *  //valor do frete
-                        $request->session()->put('portage', $finalRate);
-                        return redirect()->back()->with('msg', 'Valor do frete: R$ ' . $finalRate . '  Distancia: ' . $distance . ' km'); 
-                    endswitch; 
+            default:
+                $this->setNull(); 
+                $distance = $response['routes'][0]['legs'][0]['distance']['text'];
+                $rate = 1; //taxa variavel do frete
+                $distance = floatval($distance);
+                $finalRate = 1 ; //$rate * $distance *  //valor do frete
+                $request->session()->put('portage', $finalRate);
+                return redirect()->back()->with('msg', 'Valor do frete: R$ ' . $finalRate . '  Distancia: ' . $distance . ' km'); 
+            endswitch; 
             default:
                     $this->setNull();
                     $request->session()->put('portage', null);
                    
-                    return redirect()->back()->with('msg', 'O endereço passado não foi encontrado ou não existe');
+            return redirect()->back()->with('msg', 'O endereço passado não foi encontrado ou não existe');
         endswitch;     
       
     }
 
-    public function setNull(){
+    public function setNull()
+    {
 
         Session()->put('cep', null);
         Session()->put('state', null);
