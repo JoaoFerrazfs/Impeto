@@ -20,6 +20,7 @@
                 "reference": "73e5b88775c64ccc0b84fb60836b30dc9d92ac4a",
                 "shasum": ""
             },
+            
             "require": {
                 "php": "^7.2|^8.0",
                 "symfony/http-foundation": "^4|^5|^6",
