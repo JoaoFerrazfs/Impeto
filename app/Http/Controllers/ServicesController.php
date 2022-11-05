@@ -4,48 +4,42 @@ namespace App\Http\Controllers;
 
 use App\Models\Services;
 use Illuminate\Http\Request;
+use Admin\contents\Image;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\View\View;
+
 
 class ServicesController extends Controller
 {
-    public function create(Request $request){
+    private Image $image;
+    private Services $services;
 
-        $services= new Services();
+    public function __construct(Image $image, Services $services)
+    {
+        $this->image = $image;
+        $this->services = $services;
+    }
 
-        $services->user = auth()->user()->name; //User that register a new service
-        $services->name = $request->name;
-        $services->cod = $request->cod;
-        $services->type = $request->type;
-        $services->price = $request->price;
+    public function create(Request $request): RedirectResponse
+    {
+        $data = $request->all();
+        $data['user'] = auth()->user()->name;
+        $data['image'] = $this->image->saveLocalImage($request);
+        $this->services->fill($data)->save();
 
-        if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $requestImage = $request->image;
+        return redirect('/dashboard')->with('msg', 'O Prestador ' . $request['name'] . ' foi cadastrado com sucesso!');
+    }
 
-            $extension = $requestImage->extension();
+public function view(): View
+{
+    $result = Services::where('user','admin')->get();
 
-            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
-
-            $requestImage->move(public_path('img/services'), $imageName);
-
-            $services->image = $imageName;
-
-        $services->save();
-
-        return redirect('/dashboard')->with('msg','O Prestador '.$request->name.' foi cadastrado com sucesso!');
-
-    };
-    
-}
-
-public function view(){
-    $user = auth()->user()->name;
-    $result = Services::where('user','admin')->get(); 
     return view('master.services.viewServices',['results'=>$result]);
-  
 }
 
-public function viewAllServices(){    
-    $result = Services::all(); 
-    return view('client.services.services',['results'=>$result]);  
+public function viewAllServices(): View
+{
+    return view('client.services.services',['results'=> Services::all()]);
 }
 
 

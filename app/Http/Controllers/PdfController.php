@@ -2,47 +2,37 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Budget;
-use Dompdf\Dompdf;
-use Illuminate\Contracts\Session\Session;
-use PDF;
-use Dompdf\Options;
+use Barryvdh\DomPDF\PDF;
+use Dompdf\Options as DomPdf;
+use Illuminate\Http\Response
 
 class PdfController extends Controller
 {
-  public function createPdf()
+    private PDF $pdf;
+
+    public function __construct(PDF $pdf, DomPdf $domPdf)
   {
+      $this->pdf = $pdf;
+      $this->domPdf = $domPdf;
+  }
 
+    public function createPdf(): Response
+    {
     $sessao = Session()->all();
-    $budget =  $sessao['budget']; 
+    $budget =  $sessao['budget'];
     $amount = 0;
-    $quantity =0;
-
-   
 
     foreach ( $sessao['budget']['products'] as $value) {
-
-      
         $quantity = $value["quantity"];
         $amount =  $amount + ($quantity * $value["price"]);
     }
 
-
-    $options = new Options();
-
-    $options->set('isRemoteEnabled', TRUE);
-    $dompdf = new Dompdf($options);
-
-    
-    $dompdf = PDF::loadView('client.budgetPdf', compact('budget','amount'));
+    $this->domPdf->set('isRemoteEnabled', TRUE);
+    $dompdf = $this->pdf->loadView('client.budgetPdf', compact('budget','amount'));
     $dompdf->setPaper('a4', 'portrait');
     $dompdf->render();
 
-    $output = $dompdf->output();
-    file_put_contents("pedido.pdf", $output);
-
-
+    file_put_contents("pedido.pdf", $dompdf->output());
 
     return $dompdf->setPaper('a4')->stream('pedidos.pdf', ['Attachment' => true]);
   }
